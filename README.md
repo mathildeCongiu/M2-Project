@@ -1,7 +1,5 @@
 # M2-PROJECT
 
-![logocomplete](/content/img/logocompletecolor.png)
-
 # ROAD TO GREEN
 
 ## DESCRIPTION
