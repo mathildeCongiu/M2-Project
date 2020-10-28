@@ -80,7 +80,7 @@ Subactions or Tasks (CRUD)
 
 ### Trello
 
-https://trello.com/b/FKpatjiD/module-02-project
+[Trello Board](https://trello.com/b/FKpatjiD/module-02-project)
 
 ### Git
 
