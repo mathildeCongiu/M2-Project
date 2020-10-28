@@ -58,25 +58,25 @@ Homepage
 
 ## MODELS
 
-- User
-  > Name: String // required
-  > Email: String // required
-  > Password: String// required
-  > Nivel de ecologista. Number Default  0 (mataplanetas)
-  > Experiencia: Number Default 0
-  > Actions: [ String ] Actions Model
+User
+- Name: String // required
+- Email: String // required
+- Password: String// required
+- Nivel de ecologista. Number Default  0 (mataplanetas)
+- Experiencia: Number Default 0
+- Actions: [ String ] Actions Model
 
-- Actions (5 aprox)
-  > Title: String // required
-  > Completed: Boolean Default false
-  > Experience: Number Default 5 (definido por creadores)
-  > Article/Consigna: String // required
-  > Subactions or Tasks: [ String ] Default // required
+Actions (5 aprox)
+- Title: String // required
+- Completed: Boolean Default false
+- Experience: Number Default 5 (definido por creadores)
+- Article/Consigna: String // required
+- Subactions or Tasks: [ String ] Default // required
 
-- Subactions or Tasks (CRUD)
-  > Title: String // required
-  > Completed: Boolean Default false
-  > Experience: Number Default 2 (definido por creadores)
+Subactions or Tasks (CRUD)
+- Title: String // required
+- Completed: Boolean Default false
+- Experience: Number Default 2 (definido por creadores)
 
 ## LINKS
 
