@@ -94,4 +94,4 @@ The url to your repository and to your deployed project
 
 The url to your presentation slides
 
-https://docs.google.com/presentation/d/1j6GdtUhGV-k4AXhZ7ZvMIT3Sye72l_1tyAzZTZiTbuo/edit?usp=sharing
+[Slides link](https://docs.google.com/presentation/d/1j6GdtUhGV-k4AXhZ7ZvMIT3Sye72l_1tyAzZTZiTbuo/edit?usp=sharing)
