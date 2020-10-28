@@ -86,7 +86,7 @@ https://trello.com/b/FKpatjiD/module-02-project
 
 The url to your repository and to your deployed project
 
-https://github.com/alex-olle/M2-Project (http://github.com)
+[GitHub Link](https://github.com/alex-olle/M2-Project)
 
 [Deploy Link](http://heroku.com)
 
