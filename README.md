@@ -10,16 +10,16 @@ Do you want to be greener but you don't know how to do it? Download this app and
 
 - **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault 
 - **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
-- **homepage** - As a user, I want to register my achievements so that I can see my evolution in sustainability
-- **sign up** - As a user I want to sign up on the webpage so that I can see all the tasks that I could do to be more eco-friendly.
-- **login** - As a user I want to be able to log in on the webpage so that I can get back to my account
-- **logout** - As a user I want to be able to log out from the webpage so that I can make sure no one will access my account
-- **actions list** - As a user I want to see all the actions available so that I can start being greener
-- **subactions list** - As a user I want to see all the subactions available so that I can start being greener step by step
-- **create subaction** - As a user I want to create my own tasks so that I can contribute to save the planet 
-- **sharing task** - As a user I want to share my created tasks so that other users can use it to add them in their tasks list
-- **suggestion page** - As a user I want to see some suggestion tasks so that I can add them in my tasks list
-- **other page** - As a user I want to see more options so that I can see about the CEOs or log out
+- **Homepage** - As a user, I want to register my achievements so that I can see my evolution in sustainability
+- **Sign up** - As a user I want to sign up on the webpage so that I can see all the tasks that I could do to be more eco-friendly.
+- **Login** - As a user I want to be able to log in on the webpage so that I can get back to my account
+- **Logout** - As a user I want to be able to log out from the webpage so that I can make sure no one will access my account
+- **Actions list** - As a user I want to see all the actions available so that I can start being greener
+- **Subactions list** - As a user I want to see all the subactions available so that I can start being greener step by step
+- **Create subaction** - As a user I want to create my own tasks so that I can contribute to save the planet 
+- **Sharing task** - As a user I want to share my created tasks so that other users can use it to add them in their tasks list
+- **Suggestion page** - As a user I want to see some suggestion tasks so that I can add them in my tasks list
+- **Other page** - As a user I want to see more options so that I can see about the CEOs or log out
 
 ## BACKLOG
 
