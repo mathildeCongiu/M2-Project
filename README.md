@@ -85,14 +85,10 @@ Tasks
 
 ### Git
 
-The url to your repository and to your deployed project
-
 [GitHub Link](https://github.com/alex-olle/M2-Project)
 
 [Deploy Link](http://heroku.com)
 
-### Slides
+### Presentation
 
-The url to your presentation slides
-
-[Slides link](https://docs.google.com/presentation/d/1j6GdtUhGV-k4AXhZ7ZvMIT3Sye72l_1tyAzZTZiTbuo/edit?usp=sharing)
+[Presentation link](https://docs.google.com/presentation/d/1j6GdtUhGV-k4AXhZ7ZvMIT3Sye72l_1tyAzZTZiTbuo/edit?usp=sharing)
