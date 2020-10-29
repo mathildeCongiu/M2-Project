@@ -61,15 +61,15 @@ User
 - password: String// required
 - eco-level. Number Default  0 (mataplanetas)
 - experience: Number Default 0
-- actions: [ String ] 
-- tasks: [ String ] 
+- actions: [ mongoose.Types.ObjectID ] 
+- tasks: [ mongoose.Types.ObjectID ] 
 
 Actions
 - title: String // required
 - completed: Boolean Default false
 - experience: Number Default 5
 - description: String // required
-- tasks: [ String ] Default
+- tasks: [ mongoose.Types.ObjectID ] Default
 
 Tasks
 - title: String // required
