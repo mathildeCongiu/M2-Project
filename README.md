@@ -17,6 +17,9 @@ Do you want to be greener but you don't know how to do it? Download this app and
 - **actions list** - As a user I want to see all the actions available so that I can start being greener
 - **subactions list** - As a user I want to see all the subactions available so that I can start being greener step by step
 - **create subaction** - As a user I want to create my own tasks so that I can contribute to save the planet 
+- **sharing task** - As a user I want to share my created tasks so that other users can use it to add them in their tasks list
+- **suggestion page** - As a user I want to see some suggestion tasks so that I can add them in my tasks list
+- **other page** - As a user I want to see more options so that I can see about the CEOs or log out
 
 ## BACKLOG
 
@@ -33,48 +36,46 @@ Homepage
 ## ROUTES:
 
 | **Method** | **Route**                    | **Description**                                              | Request - Body                                            |
-| ---------- | ---------------------------- | ------------------------------------------------------------ | --------------------------------------------------------- |
-| `GET`      | `/`                          | Main page route. Renders home `index` view.                  |                                                           |
-| `GET`      | `/login`                     | Renders `login` form view.                                   |                                                           |
-| `POST`     | `/login`                     | Sends Login form data to the server.                         | { email, password }                                       |
-| `GET`      | `/signup`                    | Renders `signup` form view.                                  |                                                           |
-| `POST`     | `/signup`                    | Sends Sign Up info to the server and creates user in the DB. | { name, email, password }                                 |
-| `GET`      | `/logout`                    | Logs user out of the page. Redirect to the `home`.           |                                                           |
-| `GET`      | `/profile/:id`               | Private route. Renders `profile` form. view.                 |                                                           |
-| `GET`      | `/profile/:id/edit`          | Private route. Renders `edit` form.view.                     |                                                           |
-| `POST`     | `/profile/:id/editUser`      | Private route. Sends edit-profile info to server and updates user in DB. Redirects to `profile`. | { email, profilePic }                                     |
-| `POST`     | `/profile/:id/editBusiness`  | Private route. Sends edit-profile of each Business to server and updates user in DB. Redirects to `profile`. | { streetName, streetNumber, city, phone, webpage, about } |
-| `DELETE`   | `/profile/delete/review/:id` | Private route. Delete reviews from your profile. Redirects to `profile`. | { streetName, streetNumber, city, phone, webpage, about } |
-| `DELETE`   | `/profile/:id/delete`   | Private route. Deletes the existing business from the current user. Redirect to `profile`. |                                                           |
-| `GET`      | `/business`                  | Renders `business-list` view.                                |                                                           |
-| `POST`      | `/business`                  | Get info from input and shows the results of the business search.                                |                                                           |
-| `GET`      | `/business/details/:id`      | Render `business-details` view for the particular business.  |                                                           |
-| `POST`     | `/business/details/:id`      | Send review info from form in business-details view. Redirects to `business/details/id`.          | { reviewTitle, comment }                                                          |
-| `POST`     | `/business/favourite/:id`      | Actualize the DB with a favourite in the user and a favouriteBy in the business. Redirects to `business/details/id`.          | { reviewTitle, comment }                                                          |
-| `GET`      | `/add-business`              | Render `add-business` view.                                  |                                                           |
-| `POST`     | `/add-business`              | Sends info through forms from `add-business` view. Redirects to `business/details/:id`.          | { name, streetName, streetNumber, city, phone, webpage, type, about, image_url} |
+| ---------- | ---------------------------- | --------------------------------------------------------------- | --------------------------------------------------------- |
+| `GET`      | `/`                          | Main page route. Redirects to `login` view.                     |                                                           |
+| `GET`      | `/login`                     | Renders `login` form view.                                      |                                                           |
+| `POST`     | `/login`                     | Sends Login form data to the server and redirecto to Dashboard. | { email, password }                                       |
+| `GET`      | `/signup`                    | Renders `signup` form view.                                     |                                                           |
+| `POST`     | `/signup`                    | Sends Sign Up form to the server and creates user in the DB.    | { name, email, password, country }                                 |
+| `GET`      | `/logout`                    | Logs user out of the page. Redirect to the `login` view         |                                                           |
+| `GET`      | `/dashboard`                 | Private route. Renders `dashboad` view.                         |                                                           |
+| `GET`      | `/actions`                   | Private route. Renders `actions` view.                          |                                                           |
+| `POST`     | `/actions`                   | Private route. Sends if the user has completed an action to server and updates user in DB. Redirects to `actions`. | User model: { actions, experience, level }, Actions model: { completed }                                     |
+| `GET`      | `/actions/:id`               | Private route. Renders `tasks` view.                            |          |
+| `GET`      | `/task/new`                  | Private route. Renders `new` view.                              |          |
+| `POST`     | `/task/new`                  | Private route. Send the form data to the server and updates the DB. Redirect to `actions`. | Task model: { title, experience, isPublic }                                                           |
+| `GET`      | `/task/edit/:id`             | Private route. Renders `edit` view.                             |                                                           |
+| `POST`     | `/task/edit/:id`             | Private route. Send the form data to the server and updates the DB. Redirect to `actions`. | Task model: { title, experience, isPublic }                                                          |
+| `POST`     | `/task/delete/:id`           | Private route. Delete task from tasks lists. Redirects to `actions/:id`. |                                                           |
 
 ## MODELS
 
 User
-- Name: String // required
-- Email: String // required
-- Password: String// required
-- Nivel de ecologista. Number Default  0 (mataplanetas)
-- Experiencia: Number Default 0
-- Actions: [ String ] Actions Model
+- name: String // required
+- email: String // required
+- password: String// required
+- eco-level. Number Default  0 (mataplanetas)
+- experience: Number Default 0
+- actions: [ String ] 
+- tasks: [ String ] 
 
-Actions (5 aprox)
-- Title: String // required
-- Completed: Boolean Default false
-- Experience: Number Default 5 (definido por creadores)
-- Article/Consigna: String // required
-- Subactions or Tasks: [ String ] Default // required
+Actions
+- title: String // required
+- completed: Boolean Default false
+- experience: Number Default 5
+- description: String // required
+- tasks: [ String ] Default
 
-Subactions or Tasks (CRUD)
-- Title: String // required
-- Completed: Boolean Default false
-- Experience: Number Default 2 (definido por creadores)
+Tasks
+- title: String // required
+- completed: Boolean Default false
+- experience: Number // required
+- isPublic: Boolean // required
 
 ## LINKS
 
