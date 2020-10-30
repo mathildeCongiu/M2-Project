@@ -15,15 +15,15 @@ router.get('/signup', (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   // validamos los datos que vienen del formulario
-  if (req.body.email === "" || req.body.password === "") {
+  if (req.body.email === "" || req.body.password === "" || req.body.name === "") {
     res.render("auth/signup", {
-      errorMessage: "Indicate a username and a password to sign up",
+      errorMessage: "Indicate a username, an email and a password to sign up",
     });
     return;
   }
 
   // desestructuramos el email y el password de req.body
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
 
   // creamos la salt y hacemos hash del password
   const salt = bcrypt.genSaltSync(10);
@@ -43,6 +43,7 @@ router.post("/signup", async (req, res, next) => {
     await User.create({
       email,
       password: hashPass,
+      name
     });
     res.redirect("/");
   } catch (error) {
