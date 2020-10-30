@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
 
 mongoose
-  .connect('mongodb://localhost/save-your-dino', {
+  .connect(process.env.MONGODB_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
