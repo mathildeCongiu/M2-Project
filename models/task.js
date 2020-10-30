@@ -7,7 +7,8 @@ const taskSchema = new Schema(
     isCompleted: {type : Boolean, default: false},
     experience: { type: Number, required: true },
     isPublic: { type: Boolean, required: true},
-    // actions: [mongoose.Types.ObjectID]
+    // actions:  {type: Schema.Types.ObjectId, ref: "Action"},
+    ref : Number
   }
 );
 

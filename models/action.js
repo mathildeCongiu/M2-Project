@@ -7,11 +7,12 @@ const actionSchema = new Schema(
     isCompleted: {type : Boolean, default: false},
     experience: { type: Number, default: 20 },
     description: String,
-    // tasks: [mongoose.Types.ObjectID],
+    tasks: [ {type: Schema.Types.ObjectId, ref: "Task"}],
     dino: {
         name: String,
         img: String,
-        }
+        },
+    ref: Number
   }
 );
 
