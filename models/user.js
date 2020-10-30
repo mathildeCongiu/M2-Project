@@ -33,7 +33,7 @@ const userSchema = new Schema(
     },
 
     experience: { type: Number, default: 0 },
-    actions: [mongoose.Types.ObjectID],
+    // actions: [mongoose.Types.ObjectID],
   },
   { 
       timestamps: {
