@@ -11,6 +11,9 @@
     <button type="submit">Create account</button>
 </form>
 
+    <p class="account-message"> Already registered? <a href="/login">Log In</a>
 {{#if errorMessage}}
 <div class="error-message">{{ errorMessage }}</div>
 {{/if}}
+
+<a href="/logout">Logout</a>

@@ -5,6 +5,13 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
+const hbs = require('hbs');
+const mongoose = require('mongoose');
+
+
+
 var indexRouter = require("./routes/index");
 
 var app = express();
@@ -12,6 +19,9 @@ var app = express();
 
 //require configs
 require('./configs/db.config');
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -22,6 +32,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(  
+  session({    
+    secret: "basic-auth-secret",    
+    cookie: { maxAge: 3600000 },    
+    store: new MongoStore({      
+      mongooseConnection: mongoose.connection,      
+      ttl: 24 * 60 * 60, // 1 day    
+    }),    
+      resave: true,    
+      saveUninitialized: false,  
+    }));
 
 app.use("/", indexRouter);
 
@@ -41,16 +63,6 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: true,
-//     saveUninitialized: false,
-//     store: new MongoStore({
-//       mongooseConnection: mongoose.connection,
-//       ttl: 60 * 60 * 24 * 7,
-//     }),
-//   })
-// );
+
 
 module.exports = app;

@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs');
 
 /* GET home page. Add redirection to Signup, or Dashboard if logged iN*/
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.redirect("/signup");
+  // res.render('auth/signup');
 });
 
 router.get('/signup', (req, res, next) => {
@@ -50,6 +51,54 @@ router.post("/signup", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get("/login", (req, res, next) => {
+  res.render("auth/login");
+});
+
+router.post("/login", async (req, res, next) => {
+  // validamos los datos que vienen del formulario
+  if (req.body.email === "" || req.body.password === "") {
+    res.render("auth/login", {
+      errorMessage: "Indicate a username and a password to login",
+    });
+    return;
+  }
+
+  const { email, password } = req.body;
+
+  try {
+    // validar si el usuario existe en la BD
+    const user = await User.findOne({ email: email });
+    console.log(user);
+    if (!user) {
+      res.render("auth/login", {
+        errorMessage: "The email doesn't exist",
+      });
+      return;
+    }
+    
+    //Compara el password introducido con el password de la base de datos, usando un metodo de bcrypt que puede decriptar
+    if (bcrypt.compareSync(password, user.password)) {
+      // guardar el usuario en la session
+      req.session.currentUser = user;
+      res.redirect("/");
+    } else {
+      res.render("auth/login", {
+        errorMessage: "Incorrect password",
+      });
+    }
+
+    // validar si el password es correcto
+  } catch (error) {}
+});
+
+  router.get('/logout', (req, res, next) => {
+    req.session.destroy((err) => {
+      res.redirect('/login')
+    })
+  })
+
 
 
 module.exports = router;

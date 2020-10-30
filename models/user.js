@@ -34,6 +34,7 @@ const userSchema = new Schema(
 
     experience: { type: Number, default: 0 },
     // actions: [mongoose.Types.ObjectID],
+    // tasks: [mongoose.Types.ObjectID]
   },
   { 
       timestamps: {
