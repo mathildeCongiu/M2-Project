@@ -36,16 +36,16 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      ttl: 60 * 60 * 24 * 7,
-    }),
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: true,
+//     saveUninitialized: false,
+//     store: new MongoStore({
+//       mongooseConnection: mongoose.connection,
+//       ttl: 60 * 60 * 24 * 7,
+//     }),
+//   })
+// );
 
 module.exports = app;
