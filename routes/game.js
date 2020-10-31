@@ -15,6 +15,7 @@ router.get('/profile', function(req, res, next) {
 // Route Actions GET / POST (action completed, update of user)
 router.get('/actions', async function(req, res, next) {
     const actions = await Action.find();
+    console.log(actions);
     res.render('actions', {actions});
   });
 

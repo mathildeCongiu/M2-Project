@@ -252,3 +252,21 @@ Task.create(tasks)
 
   
   // Create a ASYNC function to add the tasks to the actions Object Id Array with a push method. Use .find() or findOne() (think of flat method in case of two arrays depth) method with created reference between tasks and actions.
+
+  var pushTasksToActions = async () => {
+    var actions = await Action.find();
+    var tasks = await Task.find();
+
+    for (let i = 0; i< actions.length; i ++) {
+      for (let j = 0; j < tasks.length; j++) {
+        if(await actions[i].ref === tasks[j].ref) {
+          await Action.update(
+            { _id: actions[i]._id }, 
+            { $push: { tasks: tasks[j] } }
+        );
+        }
+      }
+    }
+  }
+
+  pushTasksToActions()
