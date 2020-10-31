@@ -13,7 +13,8 @@ const mongoose = require('mongoose');
 
 
 var indexRouter = require("./routes/index");
-var gameRouter = require("./routes/game");
+// var gameRouter = require("./routes/game");
+var othersRouter = require("./routes/others");
 
 var app = express();
 
@@ -47,7 +48,9 @@ app.use(
     }));
 
 app.use("/", indexRouter);
-app.use("/", gameRouter);
+// app.use("/", gameRouter);
+app.use("/others", othersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
