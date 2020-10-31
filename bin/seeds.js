@@ -14,6 +14,7 @@ const actions = [
         title: "See the reality" ,
         description: "To start becoming green is not that easy. The first step for you is to realize what is happening currently in the world and to decide to do some personal actions to change that way of facts: start reading articles about climate change, watch some documentaries of plastic in the ocean…",
         tasks: [],
+        icon: "images/binoculars.png",
         ref: 1,
         dino: {
             name: "Greg the Egg",
@@ -24,6 +25,7 @@ const actions = [
         title: "Start recycling" ,
         description: "A first big cornerstone for you to become a bit greener is to start recycling. For sure, you heard about that! But be aware, each country and even each city has its own way of recycling. Check the colours of the bins not to mess it!",
         tasks: [],
+        icon: "images/bin.png",
         ref: 2,
         dino: {
             name: "Pato the Allo",
@@ -34,6 +36,7 @@ const actions = [
         title: "Kill Plastic" ,
         description: "Now let’s go a step further: try not to use plastic anymore. For sure, you got a collection of plastic bags at home, so reuse it when you go shopping or even better: use the textile bag. There are bulk shops everywhere now!",
         tasks: [],
+        icon: "images/bottle.png",
         ref: 3,
         dino: {
             name: "Marin the Spin",
@@ -44,6 +47,7 @@ const actions = [
         title: "Go local" ,
         description: "This is one of the simplest steps of all. The closer the products you buy, better for the planet. These products need less transportation so they contaminate less. Seasonal products such as fruits are good examples to start becoming greener. And this step is not just helping the planet, it also promotes the local economy.",
         tasks: [],
+        icon: "images/map.png",
         ref: 4,
         dino: {
             name: "Toto the diplo",
@@ -54,6 +58,7 @@ const actions = [
         title: "Walk and ride" ,
         description: "One of the big issues for the next decades will be the massive huge of transportation, from planes to cars. At your individual level, you can change some habits: in the city, use public transportation or even better, use your own bicycle (it is good for your own health also!). And for a longer trip, try to use the train before the plane, each time that it is possible. ",
         tasks: [],
+        icon: "images/bike.png",
         ref: 5,
         dino: {
             name: "Lean the Archae",
@@ -61,9 +66,10 @@ const actions = [
             }
       },
       {
-        title: "Stop meat" ,
+        title: "Limit meat" ,
         description: "Are you flexitarian or vegetarian and you want to level-up? With this action, you will be helping even more the environment and you will feel healthier and healthier every day!",
         tasks: [],
+        icon: "images/meat.png",
         ref: 6,
         dino: {
             name: "Daniex the T-Rex",
@@ -75,6 +81,7 @@ const actions = [
         title: "Conscious consuming" ,
         description: "In our current society, consumption is the basis of the economy: a massive amount of stimuli every day will try to convince you of the necessity to acquire any kind of product. Start thinking of what you really need and don’t buy the others! ", 
         tasks: [],
+        icon: "images/thought-bubble.png",
         ref: 7,
         dino: {
             name: "Oleg the Steg",
@@ -85,6 +92,7 @@ const actions = [
         title: "Fix don't throw" ,
         description: "Sometimes, when some device is broken, we buy a new one instead of fixing the one we have, but this is a really bad practice because we are increasing our waste. It is always better trying to fix it and with this action, we are also helping our personal economy!",
         tasks: [],
+        icon: "images/tool.png",
         ref: 8,
         dino: {
             name: "Juli the Brachi",
