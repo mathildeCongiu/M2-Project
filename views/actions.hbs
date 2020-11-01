@@ -1,0 +1,16 @@
+<div>
+
+{{#each actions}}
+<img src="{{icon}}" alt="">
+<h3>{{title}}</h3>
+{{#if isCompleted}}
+<p class= "tag">Completed</p>
+{{else}}
+<p class = "tag"> Pending</p>
+{{/if}}
+
+<p>{{description}}</p>
+<a href="/actions/{{_id}}">I do this !</a>
+{{/each}}
+
+</div>
