@@ -1,19 +1,20 @@
-<form id="form" action="/signup" method="POST">
-    <h2>Sign Up</h2>
+<main class="register">
+    <form id="form" action="/signup" method="POST">
+        <h2>Sign Up</h2>
 
-    <input type="name" name="name" placeholder="Your name" required/>
-    <br />
-    <input type="email" name="email" placeholder="Your email" required/>
-    <br />
-    <input type="password" name="password" placeholder="********" required/>
-   
+        <input type="name" name="name" placeholder="Your name" required />
+        <br />
+        <input type="email" name="email" placeholder="Your email" required />
+        <br />
+        <input type="password" name="password" placeholder="********" required />
 
-    <button type="submit">Create account</button>
-</form>
+
+        <button type="submit">Create account</button>
+    </form>
 
     <p class="account-message"> Already registered? <a href="/login">Log In</a>
-{{#if errorMessage}}
-<div class="error-message">{{ errorMessage }}</div>
-{{/if}}
+        {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
 
-<a href="/logout">Logout</a>
+</main>

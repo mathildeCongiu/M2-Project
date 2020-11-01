@@ -1,3 +1,49 @@
+<header>
+    <h3>{{user.name}} is</h3>
+    <img src="{{user.level.img}}" alt="User rank">
+    <h2>{{user.level.name}}</h2>
+</header>
 
-<h2>Name</h2>
-<p>10 points left to level up</p>
+<main>
+    <section>
+        <div>
+            <p>{{user.timestamps.createdAt}}</p>
+            
+            <p>days</p>
+        </div>
+        <div>
+            <p>{{user.experience}}</p>
+            <p>XP</p>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            {{!-- BARRITA PORCENTAJE--}}
+        </div>
+
+        <p>{{points}} points left to level up</p>
+    </section>
+
+    {{#if user.action.dino}}
+
+    <section>
+        <h4>You already saved</h4>
+        <div>
+            <ul>
+                {{#each user.action.dino}}
+                {{this.img}}
+                {{this.name}}
+                {{/each}}
+            </ul>
+
+        </div>
+    </section>
+
+    {{else}}
+    <section>
+        <h4>Go and save your first Dino!</h4>
+
+    </section>
+    {{/if}}
+</main>

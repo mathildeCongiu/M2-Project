@@ -1,16 +1,25 @@
-<div>
+<main>
+    <div>
+        {{#each actions}}
+        <div>
+            <img src="{{icon}}" alt="Icon">
+            <div>
+                <h3>{{title}}</h3>
+                {{#if isCompleted}}
+                <p class="tag">Completed</p>
+                {{else}}
+                <p class="tag"> Pending</p>
+                {{/if}}
+            </div>
+            <img src="/images/chevron.png" alt="Chevron">
+        </div>
 
-{{#each actions}}
-<img src="{{icon}}" alt="">
-<h3>{{title}}</h3>
-{{#if isCompleted}}
-<p class= "tag">Completed</p>
-{{else}}
-<p class = "tag"> Pending</p>
-{{/if}}
+        <div>
+            <p>{{description}}</p>
+            <a href="/actions/{{_id}}">I do this !</a>
+        </div>
+        {{/each}}
 
-<p>{{description}}</p>
-<a href="/actions/{{id}}">I do this !</a>
-{{/each}}
+    </div>
 
-</div>
+</main>
