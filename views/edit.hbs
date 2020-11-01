@@ -1,0 +1,46 @@
+<main>
+    <h2>{{tasksList.title}}</h2>
+
+    <form action="" method="post">
+
+        <h3>What will be your next step?</h3>
+
+        <p>I will...</p>
+
+        <input type="text-area" name="new-task" id="new-task" value="{{task.title}}">
+
+        <h3>How hard will it be for you?</h3>
+
+        <div>
+            <div>
+                <input type="radio" id="easy" name="difficulty" value="easy" checked>
+                <label for="easy">Easy baby</label>
+            </div>
+            <div>
+                <input type="radio" id="medium" name="difficulty" value="medium">
+                <label for="medium">Fair enough</label>
+            </div>
+            <div>
+                <input type="radio" id="hard" name="difficulty" value="hard">
+                <label for="hard">Super hard</label>
+            </div>
+        </div>
+
+        <h3>Do you want to share this task with the other users?</h3>
+
+        <div>
+            <div>
+                <input type="radio" id="yes" name="sharing" value="yes" {{#if task.isPublic}}checked{{/if}}>
+                <label for="yes">Yes, please</label>
+            </div>
+            <div>
+                <input type="radio" id="no" name="sharing" value="no" {{#if !task.isPublic}}checked{{/if}}>
+                <label for="no">No, thanks</label>
+            </div>
+        </div>
+
+        <button type="submit">Go !</button>
+
+    </form>
+
+</main>
