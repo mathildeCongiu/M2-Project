@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const Action = require("../models/action");
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -19,13 +19,8 @@ const userSchema = new Schema(
     },
 
     experience: { type: Number, default: 0 },
-<<<<<<< HEAD
-     actions: [{type: Schema.Types.ObjectId, ref: "Action"}],
-    tasks: [ {type: Schema.Types.ObjectId, ref: "Task"}],
-=======
-    // actions: [{type: Schema.Types.ObjectId, ref: "Action", default: }],
+    actions: [{type: Schema.Types.ObjectId, ref: "Action"}]
     // tasks: [ {type: Schema.Types.ObjectId, ref: "Task"}],
->>>>>>> intermedia
   },
   { 
       timestamps: {

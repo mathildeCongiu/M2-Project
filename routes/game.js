@@ -3,16 +3,22 @@ const router = express.Router();
 
 const Action = require("../models/action");
 const Task = require("../models/task");
+const User = require("../models/user");
 
 //Route Profile/Dashboard GET
 
 router.get("/profile", function (req, res, next) {
   const user = req.session.currentUser
-  /*let today = new Date()
+  console.log(user)
+  
+  let today = new Date()
+  console.log(today)
   // console.log(user._id)
-  let userCreation = user.timestamps.createdAt;
-  let daysPassed = Math.floor((today - userCreation/31557600000));*/
-  res.render("profile", {user: user});
+  let userCreation = new Date(user.created_at);
+  console.log(userCreation.getTime(), "here")
+  let daysPassed = Math.floor((today - userCreation)/31557600000);
+  console.log(daysPassed)
+  res.render("profile", {user: user, daysPassed: daysPassed});
 });
 
 // Route Actions GET / POST (action completed, update of user)

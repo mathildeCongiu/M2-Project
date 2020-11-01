@@ -25,7 +25,7 @@ const actions = [
         title: "Start recycling" ,
         description: "A first big cornerstone for you to become a bit greener is to start recycling. For sure, you heard about that! But be aware, each country and even each city has its own way of recycling. Check the colours of the bins not to mess it!",
         tasks: [],
-        icon: "/images/bin.png",
+        icon: "/images/recycle.png",
         ref: 2,
         dino: {
             name: "Pato the Allo",

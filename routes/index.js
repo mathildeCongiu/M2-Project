@@ -48,7 +48,8 @@ router.post("/signup", async (req, res, next) => {
       email,
       password: hashPass,
       name,
-    });
+    })
+
     res.redirect("/login");
   } catch (error) {
     next(error);
