@@ -1,4 +1,4 @@
-<div>
+<main>
     <h2>{{tasksList.title}}</h2>
     <div>
         <ul>
@@ -7,11 +7,11 @@
                 <button type="submit">X</button>
                 <li>{{this.title}}</li>
             </form>
-                <a href="/task/{{this.id}}/delete"><img src="/images/Bin-01.png" alt="Delete"></a>
+            <a href="/task/{{this.id}}/delete"><img src="/images/Bin-01.png" alt="Delete"></a>
             {{/each}}
         </ul>
     </div>
 
     <a href="/{{tasksList._id}}/hint"><img src="/images/hint.png" alt=""></a>
     <a href="/{{tasksList._id}}/new">Add a new task</a>
-</div>
+</main>
