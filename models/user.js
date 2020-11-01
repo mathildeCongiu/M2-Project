@@ -33,8 +33,8 @@ const userSchema = new Schema(
     },
 
     experience: { type: Number, default: 0 },
-    // actions: [mongoose.Types.ObjectID],
-    // tasks: [mongoose.Types.ObjectID]
+     actions: [{type: Schema.Types.ObjectId, ref: "Action"}],
+    tasks: [ {type: Schema.Types.ObjectId, ref: "Task"}],
   },
   { 
       timestamps: {
