@@ -1,21 +1,24 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const User = require("../models/user");
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 /* GET home page. Add redirection to Signup, or Dashboard if logged iN*/
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get("/", function (req, res, next) {
+  res.render("index", { title: "Express" });
 });
 
-router.get('/signup', (req, res, next) => {
-  res.render('auth/signup');
-}
-)
+router.get("/signup", (req, res, next) => {
+  res.render("auth/signup");
+});
 
 router.post("/signup", async (req, res, next) => {
   // validamos los datos que vienen del formulario
-  if (req.body.email === "" || req.body.password === "" || req.body.name === "") {
+  if (
+    req.body.email === "" ||
+    req.body.password === "" ||
+    req.body.name === ""
+  ) {
     res.render("auth/signup", {
       errorMessage: "Indicate a username, an email and a password to sign up",
     });
@@ -43,13 +46,14 @@ router.post("/signup", async (req, res, next) => {
     await User.create({
       email,
       password: hashPass,
-      name
+      name,
     });
     res.redirect("/");
   } catch (error) {
     next(error);
   }
 });
+
 
 
 module.exports = router;
