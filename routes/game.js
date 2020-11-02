@@ -48,6 +48,8 @@ router.get("/actions/:id", async (req, res, next) => {
 
 router.post("/actions/:id", async (req, res, next) => {
   try {
+    const user = req.session.currentUser
+    
     const actionID = req.params.id
     console.log(actionID)
     const action = await Action.findById(req.params.id);
@@ -72,10 +74,12 @@ router.post("/actions/:id", async (req, res, next) => {
     // action.isCompleted = true
 
     // console.log(allCompleted)
-    await action.updateOne(
-      { _id: actionID }, 
-      { $set: { isCompleted: true }}
-      )
+    // await action.updateOne(
+    //   { _id: actionID }, 
+    //   { $set: { isCompleted: true }}
+    //   )
+
+
 
 
 

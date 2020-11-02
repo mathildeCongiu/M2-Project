@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+  res.render("auth/signup", {layout: false});
 });
 
 router.post("/signup", async (req, res, next) => {
@@ -60,7 +60,7 @@ router.post("/signup", async (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login");
+  res.render("auth/login", {layout: false});
 });
 
 router.post("/login", async (req, res, next) => {

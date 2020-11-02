@@ -53,9 +53,97 @@ table {
 
 body {
   padding: 50px;
-  font: 14px "Menlo", Helvetica, Arial, sans-serif;
+  font: 30px "Menlo", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+}
+
+
+/* SIGN-UP */
+
+.register-header > h1 {
+	width:30%;
+	font-size: 10vw;
+	color: #22C28C;
+
+}
+
+
+.register-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 5vh;
+}
+
+.register {
+	display: flex;
+	flex-direction: column;
+	margin: 10vw;
+	color: #585858
+}
+
+.register > form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.register input {
+	font-size: 5vw;
+	margin: 1vh;
+	height: 100px;
+	padding-left: 30px;
+}
+.register-header > img {
+	height: auto;
+	width: 30vw;
+}
+
+.register h2 {
+	font-size: 6.5vw;
+	text-align: center;
+	margin: 5vw 0;
+}
+
+
+.register button {
+	margin: 5vh 0;
+	height: 6vh;
+	border-radius: 20px;
+	font-size: 5vw;
+	background-color: #22C28C;
+	border-style: none;
+	color: white;
+	width: 50vw;
+}
+
+.register p {
+	color: #585858;
+	font-size: 4vw;
+	line-height: 1.6;
+}
+.register a {
+	color: #22C28C;
+}
+
+.register-background {
+	background-color: #F2C11D;
+}
+
+/* To do the circle */
+.orange-circle {
+	width: 1200px;
+	height: 1200px;
+	-moz-border-radius: 50%;     
+	-webkit-border-radius: 50%;     
+	border-radius: 50%;  
+	background-color: #F2C11D;
+	position: relative;
+	top: -400px;
+	margin-bottom: -1200px;
+	z-index: -1;
 }

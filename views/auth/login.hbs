@@ -1,11 +1,24 @@
-<form action="/login" method="POST" id="form">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="//db.onlinewebfonts.com/c/9f94dc20bb2a09c15241d3a880b7ad01?family=Menlo" rel="stylesheet" type="text/css"/>
+  </head>
+ <body class = "register-background">
+     <header class= "register-header">
+         <img src="/images/logo.png" alt="logo">
+         <h1>SAVE YOUR DINO</h1>
+     </header>
+
+ <main class= "register">
+
     <h2>Login</h2>
+  <form action="/login" method="POST" id="form">
 
-    <label for="email">Email</label>
-    <input type="email" name="email" required >
+     <input type="email" name="email" placeholder= "Email" required >
 
-    <label for="password">Password</label>
-    <input type="password" name="password" required >
+    <input type="password" name="password" placeholder= "Password" required >
 
     <button>Sign in</button>
 
@@ -16,3 +29,5 @@
     <p class="account-message"> Don't have an account? <a href="/signup">Sign up</a>
     </p>
 </form>
+ </main>
+     </body>
