@@ -95,8 +95,10 @@ a {
 .register input {
 	font-size: 5vw;
 	margin: 1vh;
-	height: 100px;
+	height: 60px;
 	padding-left: 30px;
+	border-width: 1px;
+	box-shadow: #585858;
 }
 .register-header > img {
 	height: auto;
@@ -112,13 +114,13 @@ a {
 
 .register button {
 	margin: 5vh 0;
-	height: 6vh;
+	height: 8vh;
 	border-radius: 20px;
 	font-size: 5vw;
 	background-color: #22C28C;
 	border-style: none;
 	color: white;
-	width: 50vw;
+	width: 60vw;
 }
 
 .register p {
@@ -128,12 +130,20 @@ a {
 }
 .register a {
 	color: #22C28C;
+	font-size: 4.3vw;
 }
 
 .register-background {
 	background-color: #F2C11D;
 }
 
+.error-message {
+	font-size: 4vw;
+	margin-bottom: 20px;
+	background-color: #3C82B5;
+	color: white;
+	padding: 20px;
+}
 /* To do the circle */
 .orange-circle {
 	width: 1200px;
