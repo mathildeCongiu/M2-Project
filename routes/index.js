@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const Action = require("../models/action");
 
 /* GET home page. Add redirection to Signup, or Dashboard if logged iN*/
 router.get('/', function(req, res, next) {
@@ -43,12 +44,14 @@ router.post("/signup", async (req, res, next) => {
       });
       return;
     }
+    var actionsArr = await Action.find();
 
     await User.create({
       email,
       password: hashPass,
       name,
-    })
+      actions: actionsArr
+    });
 
     res.redirect("/login");
   } catch (error) {

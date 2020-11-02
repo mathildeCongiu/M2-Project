@@ -3,11 +3,11 @@
     <div>
         <ul>
             {{#each tasksList.tasks}}
-            <form action="/task/{{this.id}}/completed" method="post">
+            <form action="/task/{{this._id}}/completed" method="post">
                 <button type="submit">X</button>
                 <li>{{this.title}}</li>
             </form>
-            <a href="/task/{{this.id}}/delete"><img src="/images/Bin-01.png" alt="Delete"></a>
+            <a href="/task/{{this._id}}/delete"><img src="/images/Bin-01.png" alt="Delete"></a>
             {{/each}}
         </ul>
     </div>
