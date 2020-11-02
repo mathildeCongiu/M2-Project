@@ -44,6 +44,48 @@ router.get("/actions/:id", async (req, res, next) => {
   }
 });
 
+// Route action completed
+
+router.post("/actions/:id", async (req, res, next) => {
+  try {
+    const actionID = req.params.id
+    console.log(actionID)
+    const action = await Action.findById(req.params.id);
+    console.log(action)
+    const actionPopulated = action.populate("tasks")
+    const tasks =  actionPopulated.tasks
+  
+
+    // let allCompleted = false
+
+    // for (let i = 0; i < tasks.length; i ++) {
+    //   if (tasks[i].isCompleted) {
+    //   }
+    //   else {
+    //     console.log("You didn't complete all the tasks")
+    //     allCompleted = false 
+    //     return
+    //   }
+        
+    //     allCompleted = true
+    // }
+    // action.isCompleted = true
+
+    // console.log(allCompleted)
+    await action.updateOne(
+      { _id: actionID }, 
+      { $set: { isCompleted: true }}
+      )
+
+
+
+    res.redirect("/actions")
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 router.post("/task/:id/delete", async (req, res, next) => {
   try {
 
@@ -74,7 +116,8 @@ router.post("/task/:id/completed", async (req, res, next) => {
   }
 }
 )
-// Route action completed
+
+
 
 // Route Task GET (new) POST
 router.get("/:id/new", async (req, res, next) => {

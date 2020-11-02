@@ -16,7 +16,10 @@
 
         <div>
             <p>{{description}}</p>
-            <a href="/actions/{{_id}}">I do this !</a>
+            <form action="/actions/{{_id}}" method="post">
+            <button type="submit" >Yes, I do it !</button>
+            
+            </form>
         </div>
         {{/each}}
 
