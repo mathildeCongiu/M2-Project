@@ -1,15 +1,18 @@
 <main>
     <h2>{{tasksList.title}}</h2>
     <div>
-        <ul>
             {{#each tasksList.tasks}}
-            <form action="/task/{{this._id}}/completed" method="post">
-                <button type="submit">X</button>
-                <li>{{this.title}}</li>
-            </form>
-            <a href="/task/{{this._id}}/delete"><img src="/images/Bin-01.png" alt="Delete"></a>
+            <div>
+
+                <form action="/task/{{this._id}}/completed" method="post">
+                    <button type="submit">X</button>
+                    <p><a href="/task/{{this._id}}/edit">{{this.title}}</a></p>
+                </form>
+                <form action="/task/{{this._id}}/delete" method="post">
+                <button type="submit"><img src="/images/Bin-01.png" alt="Delete"></button>
+                </form>
+             </div>
             {{/each}}
-        </ul>
     </div>
 
     <a href="/{{tasksList._id}}/hint"><img src="/images/hint.png" alt=""></a>

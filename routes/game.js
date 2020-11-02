@@ -44,16 +44,28 @@ router.get("/actions/:id", async (req, res, next) => {
   }
 });
 
+router.post("/task/:id/delete", async (req, res, next) => {
+  try {
+
+    let task = await Task.findByIdAndRemove({_id: req.params.id});
+    res.redirect('/actions')
+    // res.redirect(`/actions/${actionId}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // Route task Post Task completed + update user
 router.post("/task/:id/completed", async (req, res, next) => {
   try {
-    // console.log(req.params.id)
-    title  = req.body
-    console.log(title)
-    const findTask = Task.findOne(req.params.id)
-    // console.log(findTask)
-    const taskCompleted = Task.findByIdAndUpdate({ _id : req.params.id}, {$set : {isCompleted : true }}, {new: true} )
+    console.log(req.params.id)
+    // title  = req.body
+    // console.log(title)
+    const findTask = await Task.findById(req.params.id)
+    console.log(findTask)
+
+
+    const taskCompleted = await Task.findByIdAndUpdate({ _id : req.params.id}, {$set : {isCompleted : !findTask.isCompleted }}, {new: true} )
 
     // const experience = Task.findById
     res.redirect("/actions")
@@ -73,9 +85,22 @@ router.get("/:id/new", async (req, res, next) => {
 
 router.post("/:id/new", async (req, res, next) => {
   try {
-    const { newTask, difficulty, sharing } = await req.body
-    console.log(newTask, difficulty, sharing)
-    // res.redirect("/actions");
+    const actionId = req.params.id;
+    const action = await Action.findById(actionId)
+    console.log(actionId)
+    const refAction = action.ref;
+    console.log(refAction);
+    const { title, experience, isPublic } = req.body;
+    // console.log(title, experience, isPublic);
+    const task = await new Task({ title, experience, isPublic, ref: refAction });
+    const newTask = await task.save();
+
+    await Action.update(
+      { _id: actionId }, 
+      { $push: { tasks: newTask } }
+      )
+
+    res.redirect(`/actions/${actionId}`);
 
   }
   catch (error) {
@@ -85,16 +110,38 @@ console.log(error)
 
 
 // Route Task GET (edit) POST
+router.get("/task/:id/edit", async (req, res, next) => {
 
-// Route POST delete
-router.post("/task/:id/delete", async (req, res, next) => {
+  const task = await Task.findById(req.params.id)
+  const taskRef = task.ref
+  const actionRef = await Action.findOne( {ref : taskRef})
+ 
+ res.render("edit", {task, actionRef});
+})
+
+router.post("/task/:id/edit", async (req, res, next) => {
   try {
-    let task = await Task.findByIdAndDelete(req.params.id);
-    // res.redirect('/actions')
-    res.render("actions");
-  } catch (error) {
-    console.log(error);
+    const taskId = req.params.id;
+    const task = await Task.findById(taskId)
+    const taskRef = task.ref;
+    // console.log(refAction);
+    const { title, experience, isPublic } = req.body;
+   
+    await Task.update(
+      { _id: taskId},
+      { $set: { title, experience, isPublic}, },
+      { new : true}
+    )
+
+    const actionRef = await Action.findOne( {ref : taskRef})
+    const actionId = actionRef.id
+
+    res.redirect(`/actions/${actionId}`);
+
   }
-});
+  catch (error) {
+console.log(error)
+  }
+ });
 
 module.exports = router;
