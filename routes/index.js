@@ -40,8 +40,8 @@ router.post("/signup", async (req, res, next) => {
     // si existiera en la base de datos, renderizamos la vista de auth/signup con un mensaje de error
     if (user !== null) {
       res.render("auth/signup", {
-        errorMessage: "The email already exists!",
-      });
+        errorMessage: "The email already exists!", layout : false
+      } );
       return;
     }
     var actionsArr = await Action.find();
@@ -80,7 +80,7 @@ router.post("/login", async (req, res, next) => {
     console.log(user);
     if (!user) {
       res.render("auth/login", {
-        errorMessage: "The email doesn't exist",
+        errorMessage: "The email doesn't exist", layout : false
       });
       return;
     }

@@ -19,8 +19,9 @@ const userSchema = new Schema(
     },
 
     experience: { type: Number, default: 0 },
-    actions: [{type: Schema.Types.ObjectId, ref: "Action"}]
+    actions: [{type: Schema.Types.ObjectId, ref: "Action"}],
     // tasks: [ {type: Schema.Types.ObjectId, ref: "Task"}],
+    dinosaved: [{type: Object}]
   },
   { 
       timestamps: {

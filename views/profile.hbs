@@ -24,14 +24,14 @@
         <p>{{points}} points left to level up</p>
     </section>
 
-    {{#if user.action.dino}}
+    {{#if user.dinosaved}}
 
     <section>
         <h4>You already saved</h4>
         <div>
             <ul>
-                {{#each user.action.dino}}
-                {{this.img}}
+                {{#each user.dinosaved}}
+                <img src="{{this.img}}" />
                 {{this.name}}
                 {{/each}}
             </ul>

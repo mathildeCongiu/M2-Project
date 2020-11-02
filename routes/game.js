@@ -49,15 +49,33 @@ router.get("/actions/:id", async (req, res, next) => {
 router.post("/actions/:id", async (req, res, next) => {
   try {
     const user = req.session.currentUser
-    
+    console.log(user)
     const actionID = req.params.id
     console.log(actionID)
     const action = await Action.findById(req.params.id);
-    console.log(action)
-    const actionPopulated = action.populate("tasks")
-    const tasks =  actionPopulated.tasks
-  
+    // console.log(action)
+    // const actionPopulated = action.populate("tasks")
+    // const tasks =  actionPopulated.tasks
 
+    // const userPopulated = await User.findById(user._id).populate("actions");
+    // console.log(userPopulated)
+    // const userActionCompletedStatus = userPopulated.actions[action.ref-1].isCompleted;
+  
+      await User.findByIdAndUpdate(
+      { _id: user._id },
+      { $push: { dinosaved : action.dino}},
+
+      )
+
+      console.log(user, "whyyyy")
+    // console.log(userActionCompletedStatus)
+    // const userUpdated = await User.updateOne(
+    //   { _id: user._id }, 
+    //   { $set: { userActionCompletedStatus: true} }, 
+    //   {new : true}
+    //   )
+
+    //   console.log(userUpdated)
     // let allCompleted = false
 
     // for (let i = 0; i < tasks.length; i ++) {
