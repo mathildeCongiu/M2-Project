@@ -4,7 +4,7 @@
         <div>
             <img src="{{icon}}" alt="Icon">
             <div>
-                <h3>{{title}}</h3>
+                <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
                 {{#if isCompleted}}
                 <p class="tag">Completed</p>
                 {{else}}
@@ -16,7 +16,10 @@
 
         <div>
             <p>{{description}}</p>
-            <a href="/actions/{{_id}}">I do this !</a>
+            <form action="/actions/{{_id}}" method="post">
+            <button type="submit" >Yes, I do it !</button>
+            
+            </form>
         </div>
         {{/each}}
 
