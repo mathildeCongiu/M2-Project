@@ -1,45 +1,46 @@
-<main>
-    <h2>{{actionRef.title}}</h2>
+<header class="task-header">
+    <a href="/actions"><img src="/images/chevron-green.png" alt="Chevron"></a>
+    <h2>{{task.title}}</h2>
 
-    <form action="/task/{{task._id}}/edit" method="post">
+</header>
+<main class="task-new-edit">
 
-        <h3>What will be your next step?</h3>
+    <form action="/{{tasksList._id}}/new" method="post">
+
+        <h3 class="trapecio">What will be your next step?</h3>
 
         <p>I will...</p>
 
-        <input type="textarea" name="title" id="new-task" value="{{task.title}}">
+        <textarea name="title" id="new-task" value="{{task.title}}">{{task.title}}</textarea>
 
         <h3>How hard will it be for you?</h3>
 
-        <div>
-            <div>
-                <input type="radio" id="easy" name="experience" value="5" checked>
-                <label for="easy">Easy baby</label>
-            </div>
-            <div>
-                <input type="radio" id="medium" name="experience" value="10">
-                <label for="medium">Fair enough</label>
-            </div>
-            <div>
-                <input type="radio" id="hard" name="experience" value="15">
-                <label for="hard">Super hard</label>
-            </div>
+        <div class="radio-option">
+
+                <input type="radio" id="easy" name="experience" value="5" {{{setChecked '5' task.experience}}}>
+                <label for="easy" class="one-radio-option green-option">Easy baby</label>
+
+                <input type="radio" id="medium" name="experience" value="10" {{{setChecked '10' task.experience}}}>
+                <label for="medium" class="one-radio-option blue-option">Fair enough</label>
+
+                <input type="radio" id="hard" name="experience" value="15" {{{setChecked '15' task.experience}}}>
+                <label for="hard" class="one-radio-option red-option">Super hard</label>
+
         </div>
 
         <h3>Do you want to share this task with the other users?</h3>
 
-        <div>
-            <div>
-                <input type="radio" id="yes" name="isPublic" value="true" checked>
-                <label for="yes">Yes, please</label>
-            </div>
-            <div>
-                <input type="radio" id="no" name="isPublic" value="false" >
-                <label for="no">No, thanks</label>
-            </div>
+        <div class="radio-option">
+
+                <input type="radio" id="true" name="isPublic" value=true {{{setChecked true task.isPublic}}}>
+                <label for="true" class="one-radio-option green-option">Yes, please</label>
+
+                <input type="radio" id="false" name="isPublic" value=false {{{setChecked false task.isPublic}}}>
+                <label for="false" class="one-radio-option blue-option">No, thanks</label>
+
         </div>
 
-        <button type="submit">Go !</button>
+        <button type="submit">Edit !</button>
 
     </form>
 
