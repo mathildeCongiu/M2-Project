@@ -7,13 +7,13 @@
 
     <form action="/{{tasksList._id}}/new" method="post">
 
-        <h3 class="trapecio">What will be your next step?</h3>
+        <h3 class="trapecio-right">What will be your next step?</h3>
 
         <p>I will...</p>
 
-        <input type="textarea" name="title" id="new-task">
+      <textarea name="title" id="new-task" value="{{task.title}}">{{task.title}}</textarea>
 
-        <h3>How hard will it be for you?</h3>
+        <h3 id="trapecio-left">How hard will it be for you?</h3>
 
         <div class="radio-option">
 
@@ -28,7 +28,7 @@
 
         </div>
 
-        <h3>Do you want to share this task with the other users?</h3>
+        <h3 class="trapecio-right">Do you want to share this task with the other users?</h3>
 
         <div class="radio-option">
 

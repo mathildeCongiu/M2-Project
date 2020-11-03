@@ -69,6 +69,12 @@ p {
 .register-background {
 	background-color: #F2C11D;
 	padding: 40px 70px;
+	position: absolute;
+	height: 1300px;
+	width: 1300px;
+	border-radius: 50%;
+	z-index: -1;
+	margin: -50% 0 0 -50%;
 }
 
 .register-header > h1 {
@@ -546,6 +552,14 @@ nav {
 	font-weight: 900;
 	color: white;
 	padding: 30px 50px;
+	clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+
+}
+
+
+#trapecio-left {
+	clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+	text-align: right;
 }
 
 .task-new-edit p {
