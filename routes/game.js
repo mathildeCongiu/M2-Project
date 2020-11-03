@@ -209,4 +209,30 @@ console.log(error)
   }
  });
 
+
+//  router.post("/task/:id/completed", async (req, res, next) => {
+//   try {
+//     const taskId = req.params.id;
+//     const task = await Task.findById(taskId)
+//     const taskRef = task.ref;
+//     // console.log(refAction);
+//     const { title, experience, isPublic } = req.body;
+   
+//     await Task.update(
+//       { _id: taskId},
+//       { $set: { title, experience, isPublic}, },
+//       { new : true}
+//     )
+
+//     const actionRef = await Action.findOne( {ref : taskRef})
+//     const actionId = actionRef.id
+
+//     res.redirect(`/actions/${actionId}`);
+
+//   }
+//   catch (error) {
+// console.log(error)
+//   }
+//  });
+
 module.exports = router;
