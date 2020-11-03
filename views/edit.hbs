@@ -11,19 +11,19 @@
 
         <p>I will...</p>
 
-        <input type="textarea" name="title" id="new-task" value="{{task.title}}">
+        <textarea name="title" id="new-task" value="{{task.title}}">{{task.title}}</textarea>
 
         <h3>How hard will it be for you?</h3>
 
         <div class="radio-option">
 
-                <input type="radio" id="easy" name="experience" value="5" {{{setChecked '5' item.type}}}>
+                <input type="radio" id="easy" name="experience" value="5" {{{setChecked '5' task.experience}}}>
                 <label for="easy" class="one-radio-option green-option">Easy baby</label>
 
-                <input type="radio" id="medium" name="experience" value="10" {{{setChecked '10' item.type}}}>
+                <input type="radio" id="medium" name="experience" value="10" {{{setChecked '10' task.experience}}}>
                 <label for="medium" class="one-radio-option blue-option">Fair enough</label>
 
-                <input type="radio" id="hard" name="experience" value="15" {{{setChecked '15' item.type}}}>
+                <input type="radio" id="hard" name="experience" value="15" {{{setChecked '15' task.experience}}}>
                 <label for="hard" class="one-radio-option red-option">Super hard</label>
 
         </div>
@@ -32,11 +32,11 @@
 
         <div class="radio-option">
 
-                <input type="radio" id="yes" name="isPublic" value="yes" {{{setChecked 'yes' item.type}}}>
-                <label for="yes" class="one-radio-option green-option">Yes, please</label>
+                <input type="radio" id="true" name="isPublic" value=true {{{setChecked true task.isPublic}}}>
+                <label for="true" class="one-radio-option green-option">Yes, please</label>
 
-                <input type="radio" id="no" name="isPublic" value="no" {{{setChecked 'no' item.type}}}>
-                <label for="no" class="one-radio-option blue-option">No, thanks</label>
+                <input type="radio" id="false" name="isPublic" value=false {{{setChecked false task.isPublic}}}>
+                <label for="false" class="one-radio-option blue-option">No, thanks</label>
 
         </div>
 

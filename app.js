@@ -10,6 +10,14 @@ const favicon = require("serve-favicon");
 const hbs = require("hbs");
 const mongoose = require("mongoose");
 
+hbs.registerHelper("setChecked", function (value, currentValue) {
+  if (value == currentValue) {
+    return "checked";
+  } else {
+    return "";
+  }
+});
+
 var indexRouter = require("./routes/index");
 var gameRouter = require("./routes/game");
 var othersRouter = require("./routes/others");
@@ -44,14 +52,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-
-hbs.registerHelper("setChecked", function (value, currentValue) {
-  if (value == currentValue) {
-    return "checked";
-  } else {
-    return "";
-  }
-});
 
 app.use("/", indexRouter);
 app.use("/", gameRouter);

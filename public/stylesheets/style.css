@@ -68,7 +68,7 @@ p {
 
 .register-background {
 	background-color: #F2C11D;
-	margin: 40px 70px;
+	padding: 40px 70px;
 }
 
 .register-header > h1 {
@@ -556,7 +556,7 @@ nav {
 	padding: 20px 50px;
 }
 
-.task-new-edit > form > input {
+.task-new-edit > form > textarea {
 	background-color: #D0D0D0;
 	border: none;
 	width: 80%;
@@ -564,7 +564,7 @@ nav {
 	border-radius: 40px;
 	margin-bottom: 40px;
 	font-size: 4vw;
-	padding: 15px;
+	padding: 30px;
 	word-wrap: break-word;
 }
 
@@ -624,6 +624,43 @@ input[type="radio"]:checked + label {
 	padding: 30px 0;
 	border-radius: 30px;
 	cursor: pointer;
+}
+
+#others-page {
+	padding: 400px 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+
+}
+
+#others-page > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+#others-page > div > li {
+	list-style-type: none;
+	padding: 30px 0;
+}
+
+#others-page a {
+	font-size: 5vw;
+	font-weight: 900;
+}
+
+#others-page > div  a {
+	color: #8DB6D4;
+}
+
+#others-page > a {
+	color: red;
+	padding: 30px 0;
+	border-top: solid 2px #585858;
+	width: 100%;
 }
 
 /* To do the circle */
