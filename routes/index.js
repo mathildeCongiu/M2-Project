@@ -22,7 +22,7 @@ router.post("/signup", async (req, res, next) => {
     req.body.name === ""
   ) {
     res.render("auth/signup", {
-      errorMessage: "Indicate a username, an email and a password to sign up",
+      errorMessage: "Indicate a username, an email and a password to sign up", layout : false
     });
     return;
   }
@@ -67,7 +67,7 @@ router.post("/login", async (req, res, next) => {
   // validamos los datos que vienen del formulario
   if (req.body.email === "" || req.body.password === "") {
     res.render("auth/login", {
-      errorMessage: "Indicate a username and a password to login",
+      errorMessage: "Indicate a username and a password to login",layout : false
     });
     return;
   }
@@ -92,7 +92,7 @@ router.post("/login", async (req, res, next) => {
       res.redirect("/profile");
     } else {
       res.render("auth/login", {
-        errorMessage: "Incorrect password",
+        errorMessage: "Incorrect password",layout : false
       });
     }
 
