@@ -1,28 +1,34 @@
-<main>
-    <div>
-        {{#each actions}}
-        <div>
-            <img src="{{icon}}" alt="Icon">
-            <div>
-                <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
-                {{#if isCompleted}}
-                <p class="tag">Completed</p>
-                {{else}}
-                <p class="tag"> Pending</p>
-                {{/if}}
+<header class="register-header">
+    <img src="/images/logo.png" alt="logo">
+    <h1>SAVE YOUR DINO</h1>
+</header>
+
+<main class="list-page">
+
+    {{#each actions}}
+    <div class="one-action">
+        <div class="one-action-title">
+            <div class="one-action-title-header">
+                <img src="{{icon}}" alt="Icon">
+                <div>
+                    <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
+                    {{#if isCompleted}}
+                    <p class="tag">Completed</p>
+                    {{else}}
+                    <p class="tag"> Pending</p>
+                    {{/if}}
+                </div>
             </div>
             <img src="/images/chevron.png" alt="Chevron">
         </div>
 
-        <div>
+        <div class="one-action-description">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
-            <button type="submit" >Yes, I do it !</button>
-            
+                <button type="submit">Yes, I do it !</button>
             </form>
         </div>
-        {{/each}}
-
     </div>
+    {{/each}}
 
 </main>
