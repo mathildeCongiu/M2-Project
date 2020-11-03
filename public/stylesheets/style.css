@@ -52,7 +52,6 @@ table {
 @font-face {font-family: "Menlo"; src: url("//db.onlinewebfonts.com/t/9f94dc20bb2a09c15241d3a880b7ad01.eot"); src: url("//db.onlinewebfonts.com/t/9f94dc20bb2a09c15241d3a880b7ad01.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/9f94dc20bb2a09c15241d3a880b7ad01.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/9f94dc20bb2a09c15241d3a880b7ad01.woff") format("woff"), url("//db.onlinewebfonts.com/t/9f94dc20bb2a09c15241d3a880b7ad01.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/9f94dc20bb2a09c15241d3a880b7ad01.svg#Menlo") format("svg"); } 
 
 body {
-  padding: 50px;
   font: 30px "Menlo", Helvetica, Arial, sans-serif;
 }
 
@@ -62,6 +61,11 @@ a {
 
 
 /* SIGN-UP */
+
+.register-background {
+	background-color: #F2C11D;
+	margin: 40px 70px;
+}
 
 .register-header > h1 {
 	width:30%;
@@ -95,10 +99,11 @@ a {
 .register input {
 	font-size: 5vw;
 	margin: 1vh;
-	height: 60px;
+	height: 100px;
 	padding-left: 30px;
-	border-width: 1px;
-	box-shadow: #585858;
+	border: solid 3px #585858;
+	width: 70vw;
+
 }
 .register-header > img {
 	height: auto;
@@ -133,9 +138,7 @@ a {
 	font-size: 4.3vw;
 }
 
-.register-background {
-	background-color: #F2C11D;
-}
+
 
 .error-message {
 	font-size: 4vw;
@@ -144,6 +147,40 @@ a {
 	color: white;
 	padding: 20px;
 }
+
+.profile-header {
+	height: 30hv;
+	background-color: #3C82B5;
+	padding: 50px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.profile-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.profile-title > h3 {
+	color: white;
+	font-size: 5vw;
+	margin-bottom: 20px;
+}
+
+.profile-title > img {
+	width: 60vw;
+}
+
+.profile-title > h2 {
+	color: white;
+	font-size: 4vw;
+	margin-top: 20px;
+}
+
 /* To do the circle */
 .orange-circle {
 	width: 1200px;
