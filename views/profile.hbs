@@ -7,20 +7,20 @@
     </div>
 </header>
 
-<main>
-    <section>
-        <div>
-            <p>{{daysPassed}}</p>
+<main id="profile">
+    <section class="user-data">
+        <div class="one-data">
+            <p class="highlight">{{daysPassed}}</p>
             <p>days</p>
         </div>
-        <div>
-            <p>{{user.experience}}</p>
+        <div class="one-data">
+            <p class="highlight">{{user.experience}}</p>
             <p>XP</p>
         </div>
     </section>
 
-    <section>
-        <div>
+    <section class="user-exp">
+        <div class="exp-bar">
             {{!-- BARRITA PORCENTAJE--}}
         </div>
 
@@ -29,21 +29,20 @@
 
     {{#if user.dinosaved}}
 
-    <section>
+    <section class="saved-dino">
         <h4>You already saved</h4>
-        <div>
-            <ul>
-                {{#each user.dinosaved}}
+        <div class="saved-dino-list">
+            {{#each user.dinosaved}}
+            <div class="one-dino">
                 <img src="{{this.img}}" />
-                {{this.name}}
-                {{/each}}
-            </ul>
-
+                <h5>{{this.name}}</h5>
+            </div>
+            {{/each}}
         </div>
     </section>
 
     {{else}}
-    <section>
+    <section class="saved-dino">
         <h4>Go and save your first Dino!</h4>
 
     </section>
