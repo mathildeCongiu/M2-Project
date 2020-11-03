@@ -1,20 +1,23 @@
-<main>
+<header class="task-header">
+    <a href="/actions"><img src="/images/chevron-green.png" alt="Chevron"></a>
     <h2>{{tasksList.title}}</h2>
-    <div>
-            {{#each tasksList.tasks}}
-            <div>
-
-                <form action="/task/{{this._id}}/completed" method="post">
-                    <button type="submit">X</button>
-                    <p><a href="/task/{{this._id}}/edit">{{this.title}}</a></p>
-                </form>
-                <form action="/task/{{this._id}}/delete" method="post">
-                <button type="submit"><img src="/images/Bin-01.png" alt="Delete"></button>
-                </form>
-             </div>
-            {{/each}}
+</header>
+<main class="list-page">
+    {{#each tasksList.tasks}}
+    <div class="one-task">
+        <form action="/task/{{this._id}}/completed" method="post" class="complete-form">
+            <button type="submit"></button>
+            <p><a href="/task/{{this._id}}/edit">{{this.title}}</a></p>
+        </form>
+        <form action="/task/{{this._id}}/delete" method="post" class="delete-form">
+            <button type="submit"><img src="/images/Bin-01.png" alt="Delete"></button>
+        </form>
     </div>
+    {{/each}}
 
+</main>
+
+<footer>
     <a href="/{{tasksList._id}}/hint"><img src="/images/hint.png" alt=""></a>
     <a href="/{{tasksList._id}}/new">Add a new task</a>
-</main>
+</footer>
