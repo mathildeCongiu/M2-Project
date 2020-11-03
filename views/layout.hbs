@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="//db.onlinewebfonts.com/c/9f94dc20bb2a09c15241d3a880b7ad01?family=Menlo" rel="stylesheet" type="text/css"/>
-  </head>
-  <body>
-    {{{body}}}
-  <nav class="nav-bar">
-    <a href="/profile"> <li class="nav-mobile"><img class="nav-icon" src="/images/profile.png" alt="Profile"> Profile</li></a>
-    <a href="/actions"> <li class="nav-mobile"><img class="nav-icon" src="/images/dino-footprint.png" alt="Dino Footprint"> Actions</li></a>
-    <a href="/others"> <li class="nav-mobile"><img class="nav-icon" src="/images/other.png" alt="Other"> Others</li></a>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="//db.onlinewebfonts.com/c/9f94dc20bb2a09c15241d3a880b7ad01?family=Menlo" rel="stylesheet"
+    type="text/css" />
+</head>
+
+<body>
+  {{{body}}}
+  <nav>
+    <div class="logo-container">
+      <li><a href="/profile"><img src="/images/logo-complete.png" class="logo" /> </a>
+      </li>
+    </div>
+    <div class="nav-options">
+      <a href="index.html">
+        <div class="one-nav-option">
+          <img src="/images/profile.png" alt="Profile">
+          <li>Profile</li>
+        </div>
+      </a>
+      <a href="/actions">
+        <div class="one-nav-option">
+          <img src="/images/dino-footprint.png" alt="Actions">
+          <li>Actions</li>
+        </div>
+      </a>
+      <a href="/others">
+        <div class="one-nav-option">
+          <img src="/images/other.png" alt="Others">
+          <li>Others</li>
+        </div>
+      </a>
+    </div>
   </nav>
-  </body>
+</body>
+
 </html>

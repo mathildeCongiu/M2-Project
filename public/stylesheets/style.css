@@ -59,6 +59,10 @@ a {
   text-decoration: none;
 }
 
+p {
+	color: #585858;
+}
+
 
 /* SIGN-UP */
 
@@ -138,8 +142,6 @@ a {
 	font-size: 4.3vw;
 }
 
-
-
 .error-message {
 	font-size: 4vw;
 	margin-bottom: 20px;
@@ -148,10 +150,46 @@ a {
 	padding: 20px;
 }
 
+/* Nav Bar */
+
+.logo-container {
+	display: none;
+}
+
+nav {
+	background-color: #D0D0D0;
+	width: 100%;
+	position: fixed;
+	overflow: scroll;
+	bottom: 0;
+}
+
+.nav-options {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.one-nav-option {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	list-style-type: none;
+}
+
+.one-nav-option > li {
+	color: #22C28C;
+	font-weight: 900;
+	padding-bottom: 20px;
+}
+
+/* PROFILE */
+
 .profile-header {
 	height: 30hv;
 	background-color: #3C82B5;
-	padding: 50px 0;
+	padding: 80px 0 50px 0;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -169,16 +207,107 @@ a {
 	color: white;
 	font-size: 5vw;
 	margin-bottom: 20px;
+	font-weight: 900;
 }
 
 .profile-title > img {
-	width: 60vw;
+	width: 45vw;
 }
 
 .profile-title > h2 {
 	color: white;
 	font-size: 4vw;
 	margin-top: 20px;
+	font-weight: 900;
+}
+
+.user-data {
+	background-color: #F2C11D;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	padding: 50px 0;
+}
+
+.one-data {
+	background-color: white;
+	border-radius: 50%;
+	padding: 35px;
+	width: 25vw;
+	height: 25vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.one-data > p {
+	font-size: 5vw;
+}
+
+.highlight {
+	color: #22C28C;
+	font-weight: 900;
+}
+
+.user-exp {
+	height: 25vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	padding: 15px 0;
+}
+
+.exp-bar {
+	width: 70vw;
+	height: 3vh;
+	background-color: #22C28C;
+	border: solid 2px #585858;
+}
+
+.user-exp > p {
+	font-size: 4vw;
+}
+
+.saved-dino {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 0 60px;
+}
+
+.saved-dino > h4 {
+	font-size: 3.7vw;
+	color: #3C82B5;
+	font-weight: 900;
+	margin-bottom: 40px;
+}
+
+.saved-dino-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.one-dino {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.one-dino > img {
+	width: 35vw;
+}
+
+.one-dino > h5 {
+	color: #3C82B5;
+	font-size: 3.6vw;
+	padding: 15px 0 40px 0;
 }
 
 /* To do the circle */
