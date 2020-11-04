@@ -7,29 +7,43 @@ const userSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     level: {
-      name: {
-        type: String,
-        default: "Planetkiller",
-      },
-      rank: { type: Number, enum: [1, 2, 3, 4, 5], default: 1 },
-      img: {
-        type: String,
-        default: "/images/planetkiller.png",
-      },
+      type: [ Object ],
+      default: [
+        {
+          name: "Planetkiller",
+          img: "/images/planetkiller.png",
+        },
+        {
+          name: "Survivor",
+          img: "/images/survivor.png",
+        },
+        {
+          name: "Explorator",
+          img: "/images/explorador.png",
+        },
+        {
+          name: "Eco-Warrior",
+          img: "/images/eco-warrior.png",
+        },
+        {
+          name: "Planet Saviour",
+          img: "/images/planetsaviour.png",
+        },
+      ]
     },
 
     experience: { type: Number, default: 0 },
-    actions: [{type: Schema.Types.ObjectId, ref: "Action"}],
+    actions: [{ type: Schema.Types.ObjectId, ref: "Action" }],
     // tasks: [ {type: Schema.Types.ObjectId, ref: "Task"}],
-    dinosaved: [{type: Object}]
+    dinosaved: [{ type: Object }],
   },
-  { 
-      timestamps: {
-           createdAt: "created_at", 
-           updatedAt: "updated_at" 
-        } }
+  {
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    },
+  }
 );
-
 
 const User = mongoose.model("User", userSchema);
 

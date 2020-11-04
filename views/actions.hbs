@@ -1,10 +1,10 @@
-<header class="register-header">
+<header class="register-header register-background">
     <img src="/images/logo.png" alt="logo">
     <h1>SAVE YOUR DINO</h1>
 </header>
 
 <main class="list-page">
-
+<div class = "logo-header"></div>
     {{#each actions}}
     <div class="one-action">
         <div class="one-action-title">
@@ -12,11 +12,7 @@
                 <img src="{{icon}}" alt="Icon">
                 <div>
                     <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
-                    {{#if isCompleted}}
-                    <p class="tag">Completed</p>
-                    {{else}}
-                    <p class="tag"> Pending</p>
-                    {{/if}}
+                    <p class="tag">Pending</p>
                 </div>
             </div>
             <img src="/images/chevron.png" alt="Chevron">
@@ -25,7 +21,7 @@
         <div class="one-action-description">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
-                <button type="submit">Yes, I do it !</button>
+                <button type="submit" id="action-bt">Yes, I do it !</button>
             </form>
         </div>
     </div>
