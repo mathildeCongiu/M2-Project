@@ -173,6 +173,7 @@ nav {
 	position: fixed;
 	overflow: scroll;
 	bottom: 0;
+	z-index: 99;
 }
 
 .nav-options {
@@ -350,6 +351,7 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	box-shadow: 0 4px 5px #585858;
+	z-index: 1;
 }
 
 .one-action-title-header {
@@ -404,7 +406,6 @@ nav {
 	background-color: #5587AC;
 	padding: 150px 50px 50px;
 	margin-top: -100px;
-	z-index: -1;
 	border-radius: 40px;
 	display: flex;
 	flex-direction: column;
@@ -419,7 +420,7 @@ nav {
 	margin-bottom: 50px;
 }
 
-.one-action-description button {
+#action-bt {
 	background-color: white;
 	cursor: pointer;
 	font-size: 5vw;
