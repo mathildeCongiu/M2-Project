@@ -47,15 +47,14 @@ router.get("/actions", async function (req, res, next) {
   const actions = userActionPopulated.actions;
 
   // console.log(actions);
-  res.render("actions", { actions });
+  res.render("actions", { actions, user });
 });
 
 // Route action/:id GET
 router.get("/actions/:id", async (req, res, next) => {
   try {
     const tasksList = await Action.findById(req.params.id).populate("tasks");
-
-    res.render("tasks", { tasksList: tasksList });
+      res.render("tasks", { tasksList: tasksList });
   } catch (error) {
     console.log(error);
   }

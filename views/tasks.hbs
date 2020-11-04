@@ -5,8 +5,8 @@
 <main class="list-page">
     {{#each tasksList.tasks}}
     <div class="one-task">
-        <form action="/task/{{this._id}}/completed" method="post" class="complete-form">
-            <button type="submit"></button>
+        <form action="/task/{{this._id}}/completed" method="post" class="complete-form {{#if this.isCompleted}}task-done{{/if}}">
+            <button type="submit" class="done"></button>
             <p><a href="/task/{{this._id}}/edit">{{this.title}}</a></p>
         </form>
         <form action="/task/{{this._id}}/delete" method="post" class="delete-form">
