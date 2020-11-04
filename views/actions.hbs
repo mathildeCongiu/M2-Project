@@ -4,24 +4,32 @@
 </header>
 
 <main class="list-page">
-<div class = "logo-header"></div>
+    <div class="logo-header"></div>
     {{#each actions}}
     <div class="one-action">
-        <div class="one-action-title">
+        <div class="one-action-title {{#if this.isCompleted}}-one-action-title-completed{{/if}}">
             <div class="one-action-title-header">
                 <img src="{{icon}}" alt="Icon">
                 <div>
                     <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
+                    {{#if this.isCompleted}}
                     <p class="tag">Pending</p>
+                    {{else}}
+                    <p class="tag">Completed</p>
+                    {{/if}}
                 </div>
             </div>
             <img src="/images/chevron.png" alt="Chevron">
         </div>
 
-        <div class="one-action-description">
+        <div class="one-action-description {{#if this.isCompleted}}-one-action-description-completed{{/if}}">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
+                {{#if this.isCompleted}}
                 <button type="submit" id="action-bt">Yes, I do it !</button>
+                {{else}}
+                <button type="submit" id="action-bt-done">I don't do it anymore...</button>
+                {{/if}}
             </form>
         </div>
     </div>

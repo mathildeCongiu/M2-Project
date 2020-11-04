@@ -354,6 +354,10 @@ nav {
 	z-index: 1;
 }
 
+.one-action-title-completed { 
+	background-color: #2ECC71;
+}
+
 .one-action-title-header {
 	display: flex;
 	flex-direction: row;
@@ -413,6 +417,10 @@ nav {
 	align-items: center;
 }
 
+.one-action-description-completed {
+	background-color: #16A78A;
+}
+
 .one-action-description > p {
 	color: white;
 	font-size: 4vw;
@@ -427,6 +435,16 @@ nav {
 	padding: 30px 150px;
 	border-radius: 30px;
 	color: #5587AC;
+}
+
+/* #action-bt {   disabled
+	background-color: #B5B3B3;
+	color: #D0D0D0;
+} */
+
+#action-bt-done {
+	background-color: #DE6464;
+	color: white;
 }
 
 .task-header {
@@ -468,8 +486,16 @@ nav {
 	background-color: #8DB6D4;
 	border-radius: 40px 0 0 40px;
 	width: 100%;
-	/* padding-right: 120px;
-	margin-right: -100px; */
+}
+
+.task-done {
+	background-color: #2ECC71;
+}
+
+.done {
+	background-color: #585858;
+	clip-path: polygon(12% 0, 58% 89%, 100% 60%, 100% 71%, 59% 100%, 49% 100%, 0 0); 
+	z-index: 3;
 }
 
 .complete-form > button {
@@ -479,6 +505,7 @@ nav {
 	border-radius: 30px;
 	cursor: pointer;
 }
+
 
 .complete-form > p {
 	width: 70%;
