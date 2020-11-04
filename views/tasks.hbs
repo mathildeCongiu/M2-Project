@@ -1,3 +1,4 @@
+  <div class="logo-header-beige"></div>
 <header class="task-header">
     <a href="/actions"><img src="/images/chevron-green.png" alt="Chevron"></a>
     <h2>{{tasksList.title}}</h2>
@@ -6,7 +7,7 @@
     {{#each tasksList.tasks}}
     <div class="one-task">
         <form action="/task/{{this._id}}/completed" method="post" class="complete-form {{#if this.isCompleted}}task-done{{/if}}">
-            <button type="submit" class="done"></button>
+            <button type="submit" {{#if this.isCompleted}}class="button-done"{{/if}}></button>
             <p><a href="/task/{{this._id}}/edit">{{this.title}}</a></p>
         </form>
         <form action="/task/{{this._id}}/delete" method="post" class="delete-form">
