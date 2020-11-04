@@ -10,6 +10,7 @@ const actionSchema = new Schema({
   dino: {
     name: String,
     img: String,
+    isCompleted: { type: Boolean, default: false }
   },
   ref: Number,
 });
