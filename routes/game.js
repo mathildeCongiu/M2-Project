@@ -19,8 +19,24 @@ router.get("/profile", function (req, res, next) {
   let daysPassed = Math.floor(
     (today.getTime() - userCreation.getTime()) / 86400000
   );
+
+  // crear variable para lvl e iterarlo por la array para cambiar name and img
+  let lvl = 0;
+
+  if (user.experience > 150) {
+    lvl = 4;
+  } else if (user.experience > 100) {
+    lvl = 3;
+  } else if (user.experience > 60) {
+    lvl = 2;
+  } else if (user.experience > 25) {
+    lvl = 1;
+  }
+
+  let userLevel = user.level[lvl];
+
   // console.log(daysPassed);
-  res.render("profile", { user: user, daysPassed: daysPassed });
+  res.render("profile", { user: user, daysPassed: daysPassed, userLevel: userLevel });
 });
 
 // Route Actions GET / POST (action completed, update of user)
