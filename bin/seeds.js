@@ -19,6 +19,7 @@ const actions = [
         dino: {
             name: "Greg the Egg",
             img: "/images/egg.png",
+            isCompleted: false,
             }
       },
       {
@@ -30,6 +31,7 @@ const actions = [
         dino: {
             name: "Pato the Allo",
             img: "/images/dino-07-background.png",
+            isCompleted: false,
             }
       },
       {
@@ -41,6 +43,7 @@ const actions = [
         dino: {
             name: "Marin the Spin",
             img: "/images/dino-04-background.png",
+            isCompleted: false,
             }
       },
       {
@@ -52,6 +55,7 @@ const actions = [
         dino: {
             name: "Toto the diplo",
             img: "/images/dino-01-background.png",
+            isCompleted: false,
             }
       },
       {
@@ -63,6 +67,7 @@ const actions = [
         dino: {
             name: "Lean the Archae",
             img: "/images/dino-03-background.png",
+            isCompleted: false,
             }
       },
       {
@@ -74,6 +79,7 @@ const actions = [
         dino: {
             name: "Daniex the T-Rex",
             img: "/images/dino-02-background.png",
+            isCompleted: false,
             }
       },
 
@@ -86,6 +92,7 @@ const actions = [
         dino: {
             name: "Oleg the Steg",
             img: "/images/dino-05-background.png",
+            isCompleted: false,
             }
       },
       {
@@ -97,6 +104,7 @@ const actions = [
         dino: {
             name: "Juli the Brachi",
             img: "/images/dino-06-background.png",
+            isCompleted: false,
             }
       }
     
