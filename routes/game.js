@@ -70,7 +70,7 @@ router.post("/actions/:id", async (req, res, next) => {
     // console.log(actionID);
     const action = await Action.findById(req.params.id);
 
-    let exists = false;
+    var exists = false;
     for (let i = 0; i < user.dinosaved.length; i++) {
       // console.log(i)
       console.log(user.dinosaved[i]);
