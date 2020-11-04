@@ -50,6 +50,8 @@ router.get("/actions", async function (req, res, next) {
   res.render("actions", { actions, user });
 });
 
+
+
 // Route action/:id GET
 router.get("/actions/:id", async (req, res, next) => {
   try {
@@ -59,6 +61,7 @@ router.get("/actions/:id", async (req, res, next) => {
     console.log(error);
   }
 });
+
 
 // Route action completed
 
@@ -144,10 +147,18 @@ router.post("/actions/:id", async (req, res, next) => {
     //   { $set: { isCompleted: true }}
     //   )
 
-    res.redirect("/actions");
+    res.redirect(`/actions/${actionID}/modal`);
   } catch (error) {
     console.log(error);
   }
+});
+
+
+router.get("/actions/:id/modal", async (req, res, next) => {
+  const actionID = req.params.id;
+  const action = await Action.findById(actionID);
+
+  res.render("modal", {action, layout : false});
 });
 
 // Route task Post Task completed + update user
@@ -258,6 +269,10 @@ router.post("/task/:id/delete", async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+router.get("/modal", (req, res, next) => {
+  res.render("modal");
 });
 
 module.exports = router;
