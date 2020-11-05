@@ -260,7 +260,7 @@ nav {
 	background-color: #D0D0D0;
 	width: 100%;
 	position: fixed;
-	overflow: scroll;
+	/* overflow: scroll; */
 	bottom: 0;
 	z-index: 99;
 }
@@ -326,7 +326,6 @@ nav {
 /* PROFILE */
 
 .profile-header {
-	height: 30hv;
 	padding: 80px 0 50px 0;
 	display: flex;
 	flex-direction: row;
@@ -368,6 +367,9 @@ nav {
 	padding: 50px 0;
 }
 
+.user-data > p {
+	display: none;
+}
 .one-data {
 	background-color: white;
 	border-radius: 50%;
@@ -447,6 +449,135 @@ nav {
 	color: #8DB6D4;
 	font-size: 3.6vw;
 	padding: 15px 0 40px 0;
+}
+
+@media screen and (min-width: 1000px){
+
+	.logo-header-blue {
+		display: none;
+	}
+	.profile-header {
+		/* background-color: #DE6464; */
+		background-image: url("../images/background.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		padding: 0 100px;
+		height: 600px;
+		justify-content: flex-start;
+	}
+	
+	.profile-title > h3 {
+		font-size: 2vw;
+		margin-top: 110px;
+	}
+	
+	.profile-title > img {
+		width: 15vw;
+	}
+	
+	.profile-title > h2 {
+		font-size: 2vw;
+		margin-top: 20px;
+	}
+
+	.profile {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	
+	.user-data {
+		background: none;
+		justify-content: space-around;
+		width: 40vw;
+		padding: 50px 0;
+	}
+
+	.user-data > p {
+		display: block;
+	}
+
+	.one-data {
+		background-color:#D0D0D0;
+		border-radius: 50%;
+		padding: 35px;
+		width: 8vw;
+		height: 8vw;
+		
+	}
+	
+
+
+	.one-data > p {
+		font-size: 2.5vw;
+	}
+	
+	.highlight {
+		color: #2ECC71;
+		font-weight: 900;
+	}
+	
+	.user-exp {
+		height: 25vw;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		padding: 15px 0;
+	}
+	
+	.exp-bar {
+		width: 70vw;
+		height: 3vh;
+		background-color: #2ECC71;
+		border: solid 2px #585858;
+	}
+	
+	.user-exp > p {
+		font-size: 4vw;
+	}
+	
+	.saved-dino {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 0 60px;
+		margin-bottom: 200px;
+	}
+	
+	.saved-dino > h4 {
+		font-size: 3.7vw;
+		color: #8DB6D4;
+		font-weight: 900;
+		margin-bottom: 40px;
+	}
+	
+	.saved-dino-list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	
+	.one-dino {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	
+	.one-dino > img {
+		width: 35vw;
+	}
+	
+	.one-dino > h5 {
+		color: #8DB6D4;
+		font-size: 3.6vw;
+		padding: 15px 0 40px 0;
+	}
+	
 }
 
 /* Actions page */
@@ -691,7 +822,6 @@ nav {
 	margin-top: 50px;
 	border-radius: 40px;
 	box-shadow: 0 4px 5px #585858;
-	background-color: white;
 }
 
 .complete-form {
@@ -758,7 +888,7 @@ nav {
 	margin: 220px 50px;
 	width: 90%;
 	position: fixed;
-	overflow: scroll;
+	/* overflow: scroll; */
 	bottom: 0;
 }
 
@@ -789,130 +919,81 @@ nav {
 }
 
 @media screen and (min-width: 1000px){
-	/* .task-header {
+	.flex-tasks {
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
+		justify-content: space-around;
 		align-items: center;
-		padding: 100px 30px;
 	}
+
+
+	.task-header {
+		/* width: 10%; */
+		margin: 0;
+	}
+
 	
-	.task-header img {
-		width: 11vw;
+	.task-header > a {
+		display: none
 	}
 	
 	.task-header > h2 {
-		font-size: 8vw;
-		color: #2ECC71;
+		font-size: 8vw;;
 		margin-left: 50px;
-		font-weight: 900;
+		width: 40vw;
 	}
 	
 	.one-task {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
 		margin-top: 50px;
-		border-radius: 40px;
-		box-shadow: 0 4px 5px #585858;
-		background-color: white;
 	}
+
 	
-	.complete-form {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
-		background-color: #8DB6D4;
-		border-radius: 40px 0 0 40px;
-		width: 100%;
-	}
-	
-	.task-done {
-		background-color: #2ECC71;
-	}
-	
-	.button-done {
-		background-color: white;
-		clip-path: polygon(41% 86%, 100% 0, 100% 17%, 43% 100%, 0% 60%, 0 48%);
-		border: none
-	}
-	
+
 	.complete-form > button {
-		width: 9vw;
-		height: 9vw;
+		width: 3.5vw;
+		height: 3.5vw;
 		margin: 40px;
-		border-radius: 30px;
-		cursor: pointer;
 	}
 	
 	
 	.complete-form > p {
-		width: 70%;
-		padding: 50px 0;
-		line-height: 1.3;
-		word-wrap: break-word;
+		padding: 20px 0;
+		font-size: 2vw;
 	}
-	
-	.complete-form a {
-		color: white;
-		text-decoration: none;
-	}
-	
+
 	
 	.delete-form {
 		padding: 0 10px;
 	}
 	
-	.delete-form > button {
-		background-color: white;
-		border: none;
-		cursor: pointer;
-	}
-	
+
 	.delete-form img {
-		width: 10vw;
+		width: 4vw;
 	}
 	
 	#task-footer {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
 		margin: 220px 50px;
-		width: 90%;
-		position: fixed;
-		overflow: scroll;
-		bottom: 0;
+		width: 40%;
 	}
 	
 	.hint-img {
-		width: 15vw;
+		width: 6vw;
 	}
 
 	.new-task-bt {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		background-color: #2ECC71;
 		padding: 15px 20px;
 		border-radius: 40px;
 	}
 	
 	.new-task-bt > p {
-		color: white;
-		font-size: 5vw;
-		font-weight: 900;
+		font-size: 2vw;
 		margin-right: 30px;
 	}
 	
 	.new-task-bt > img {
-		width: 12vw;
-		height: 12vw;
-	} */
+		width: 5vw;
+		height: 5vw;
+	}
 	
 }
 
@@ -931,13 +1012,13 @@ nav {
 	font-weight: 900;
 	color: white;
 	padding: 30px 50px;
-	clip-path: polygon(0 0, 85% 0, 100% 100%, 0% 100%);
+	clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
 
 }
 
 
 #trapecio-left {
-	clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+	clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
 	text-align: right;
 }
 
@@ -1056,6 +1137,99 @@ input[type="radio"]:checked + label {
 	width: 100%;
 }
 
+@media screen and (min-width: 1000px){
+
+.new-edit-flex {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-top: 120px;
+}
+
+.task-new-edit {
+	width: 40vw;
+}
+
+.task-new-edit h3 {
+	font-size: 3vw;
+	width: 30vw;
+	padding: 30px 50px;
+}
+
+
+.task-new-edit p {
+	font-size: 4vw;
+	padding: 20px 50px;
+}
+
+.task-new-edit > form > textarea {
+	/* width: 40%; */
+	height: 10vh;
+	margin-bottom: 40px;
+	font-size: 2vw;
+	padding: 30px;
+}
+
+.radio-option {
+	margin: 50px 0;
+}
+
+.one-radio-option {
+	margin: 15px;
+	width: 10vw;
+	font-size: 2vw;
+	padding: 30px 0;
+}
+
+.task-new-edit button {
+	margin-bottom: 220px;
+	width: 20vw;
+	font-size: 2vw;
+	padding: 30px 0;
+}
+
+
+}
+/*Others */
+#others-page {
+	padding: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+
+}
+
+#others-page > div {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+#others-page > div > li {
+	list-style-type: none;
+	padding: 30px 0;
+}
+
+#others-page a {
+	font-size: 5vw;
+	font-weight: 900;
+}
+
+#others-page > div  a {
+	color: #585858;
+}
+
+#others-page > a {
+	color: red;
+	padding: 30px 0;
+	border-top: solid 2px #585858;
+	width: 100%;
+}
+
+}
 /* To do the circle */
 .orange-circle {
 	width: 1200px;
