@@ -6,6 +6,8 @@ const actionSchema = new Schema({
   experience: { type: Number, default: 20 },
   description: String,
   icon: String,
+  isCompleted: { type: Boolean, default: false },
+  allTasksCompleted: { type: Boolean, default: false },
   tasks: [{ type: Schema.Types.ObjectId, ref: "Task" }],
   dino: {
     name: String,

@@ -41,10 +41,38 @@ router.get("/profile", function (req, res, next) {
 
 // Route Actions GET / POST (action completed, update of user)
 router.get("/actions", async function (req, res, next) {
-  const user = req.session.currentUser;
-  // console.log(user)
+  let user = req.session.currentUser;
   const userActionPopulated = await User.findById(user._id).populate("actions");
-  const actions = userActionPopulated.actions;
+  let actions = userActionPopulated.actions
+  
+
+  for (let j = 0; j< actions.length; j++) {
+    let counter = 0
+    let actionID = actions[j]._id
+    let actionPopulated = await Action.findById(actionID).populate("tasks");
+
+    for (let i = 0; i< actionPopulated.tasks.length; i++) {
+      if (actionPopulated.tasks[i].isCompleted) {
+        counter ++;
+      }
+    }
+
+    if (counter === actionPopulated.tasks.length) {
+      const allTasksCompleted = await Action.findByIdAndUpdate(
+        { _id: actionID },
+        { $set: { allTasksCompleted: true } },
+        { new: true }
+      );
+      
+      actions = await Action.find()
+      
+      console.log("ALL TASKS COMPLETED", allTasksCompleted)
+    }
+    console.log("USER ACTION POPULATED", userActionPopulated)
+    
+    console.log("ACTION POPULATED", actionPopulated)
+  }
+
 
   // console.log(actions);
   res.render("actions", { actions, user });
@@ -71,9 +99,16 @@ router.post("/actions/:id", async (req, res, next) => {
     // console.log(user);
     const actionID = req.params.id;
     // console.log(actionID);
-    const action = await Action.findById(req.params.id);
+    let action = await Action.findById(req.params.id);
+    
+    const actionCompleted = await Action.findByIdAndUpdate(
+      { _id: actionID },
+      { $set: { isCompleted: !action.isCompleted } },
+      { new: true }
+    );
+    action = actionCompleted
 
-    var exists = false;
+    let exists = false;
     for (let i = 0; i < user.dinosaved.length; i++) {
       // console.log(i)
       console.log(user.dinosaved[i]);
@@ -95,6 +130,7 @@ router.post("/actions/:id", async (req, res, next) => {
         { new: true }
       );
       req.session.currentUser = userUpdated;
+      res.redirect(`/actions`)
     } else {
       const userExpUpdated = await User.findByIdAndUpdate(
         { _id: user._id },
@@ -107,11 +143,9 @@ router.post("/actions/:id", async (req, res, next) => {
         { new: true }
       );
       req.session.currentUser = userUpdated;
+      res.redirect(`/actions/${actionID}/modal`);
     }
 
-    // console.log(user, "whyyyy");
-
-    // console.log(action)
     // const actionPopulated = action.populate("tasks")
     // const tasks =  actionPopulated.tasks
     // const userPopulated = await User.findById(user._id).populate("actions");
@@ -147,7 +181,7 @@ router.post("/actions/:id", async (req, res, next) => {
     //   { $set: { isCompleted: true }}
     //   )
 
-    res.redirect(`/actions/${actionID}/modal`);
+   
   } catch (error) {
     console.log(error);
   }
