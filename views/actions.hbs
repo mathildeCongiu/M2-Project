@@ -7,28 +7,32 @@
 <main class="list-page">
     {{#each actions}}
     <div class="one-action">
-        <div class="one-action-title {{#if this.isCompleted}}-one-action-title-completed{{/if}}">
+        <input type="checkbox" class= "chevron-checkbox" id="{{this.title}}-chevron-checkbox" name= "chevron-checkbox"> 
+ 
+        <div class="one-action-title {{#if this.isCompleted}}one-action-title-completed{{/if}}">
             <div class="one-action-title-header">
                 <img src="{{icon}}" alt="Icon">
                 <div>
                     <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
-                    {{#if exists}}
+                    {{#if this.isCompleted}}
                     <p class="tag">Completed</p>
                     {{else}}
                     <p class="tag">Pending</p>
                     {{/if}}
                 </div>
             </div>
-            <img src="/images/chevron.png" alt="Chevron">
+            <label for="{{this.title}}-chevron-checkbox"><img class= "chevron-img" src="/images/chevron.png" alt="Chevron"></label>
+                
         </div>
-
-        <div class="one-action-description {{#if this.isCompleted}}-one-action-description-completed{{/if}}">
+        
+        
+        <div class="one-action-description {{#if this.isCompleted}}one-action-description-completed{{/if}}">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
-                {{#if exists}}
-                <button type="submit" id="action-bt-done">I don't do it anymore...</button>
+                {{#if this.isCompleted}}
+                <button type="submit" class= "action-bt-done ">I don't do it anymore</button>
                 {{else}}
-                <button type="submit" id="action-bt">Yes, I do it !</button>
+                <button type="submit" class="action-bt" >Yes, I do it !</button>
                 {{/if}}
             </form>
         </div>

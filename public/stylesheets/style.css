@@ -426,15 +426,28 @@ nav {
 	margin-top: 20px;
 }
 
-.one-action-title > img {
+.chevron-img {
 	width: 8vw;
 	margin-right: 50px;
 	transform: rotate(90deg);
 	cursor: pointer;
 }
 
-.one-action-title > img:active {
+.one-action input:checked ~ .one-action-title label > img{
 	transform: rotate(0deg);
+	/* transition: height 0.2s ease-in-out 0s; */
+}
+
+.one-action input:checked ~ .one-action-description {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	/* transition: height 0.2s ease-in-out 0s; */
+}
+
+.chevron-checkbox {
+	display: none;
 }
 
 .one-action-description {
@@ -442,10 +455,8 @@ nav {
 	padding: 150px 50px 50px;
 	margin-top: -100px;
 	border-radius: 40px;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
+	display: none;
+	
 }
 
 .one-action-description-completed {
@@ -459,7 +470,7 @@ nav {
 	margin-bottom: 50px;
 }
 
-#action-bt {
+.action-bt {
 	background-color: white;
 	cursor: pointer;
 	font-size: 5vw;
@@ -473,9 +484,13 @@ nav {
 	color: #D0D0D0;
 } */
 
-#action-bt-done {
+.action-bt-done {
 	background-color: #DE6464;
 	color: white;
+	cursor: pointer;
+	font-size: 5vw;
+	padding: 30px 100px;
+	border-radius: 30px;
 }
 
 .task-header {
