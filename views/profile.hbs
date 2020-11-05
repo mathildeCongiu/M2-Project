@@ -23,11 +23,11 @@
 
     <section class="user-exp">
         <p>Your goal</p>
-        <div class="exp-bar">
-            {{!-- BARRITA PORCENTAJE--}}
+        <div>
+            <img src="{{percentMissing}}" alt="">
         </div>
 
-        <p>{{points}} points left to level up</p>
+        <p>{{pointsMissing}} points left to level up</p>
     </section>
 
     {{#if user.dinosaved}}

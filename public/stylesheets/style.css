@@ -403,11 +403,9 @@ nav {
 .user-exp p:first-child {
 	display: none;
 }
-.exp-bar {
+.user-exp img {
 	width: 70vw;
 	height: 3vh;
-	background-color: #2ECC71;
-	border: solid 2px #585858;
 }
 
 .user-exp > p {
@@ -533,9 +531,9 @@ nav {
 		display: block;
 	}
 	
-	.exp-bar {
-		width: 80%;
-		height: 3vh;
+	.user-exp img {
+		width: 30vw;
+		height: 5vh;
 	}
 	
 	.user-exp > p {
@@ -1216,7 +1214,6 @@ input[type="radio"]:checked + label {
 	width: 100%;
 }
 
-}
 /* To do the circle */
 .orange-circle {
 	width: 1200px;
