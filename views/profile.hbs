@@ -10,6 +10,7 @@
 
 <main id="profile">
     <section class="user-data">
+        <p>Your achievements</p>
         <div class="one-data">
             <p class="highlight">{{daysPassed}}</p>
             <p>days</p>
@@ -21,11 +22,12 @@
     </section>
 
     <section class="user-exp">
-        <div class="exp-bar">
-            {{!-- BARRITA PORCENTAJE--}}
+        <p>Your goal</p>
+        <div>
+            <img src="{{percentMissing}}" alt="">
         </div>
 
-        <p>{{points}} points left to level up</p>
+        <p>{{pointsMissing}} points left to level up</p>
     </section>
 
     {{#if user.dinosaved}}

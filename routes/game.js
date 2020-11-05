@@ -23,20 +23,53 @@ router.get("/profile", function (req, res, next) {
   // crear variable para lvl e iterarlo por la array para cambiar name and img
   let lvl = 0;
 
-  if (user.experience > 150) {
+  const level1Points = 25
+  const level2Points = 60
+  const level3Points = 100
+  const level4Points = 150
+  let pointsMissing = 0
+
+  let percentMissing = 0
+  const percent25 = "/images/25.png"
+  const percent50 = "/images/50.png"
+  const percent75 = "/images/75.png"
+  const percent100 = "/images/100.png"
+
+  if (user.experience > level4Points) {
     lvl = 4;
-  } else if (user.experience > 100) {
+    percentMissing = percent100
+  } else if (user.experience > level3Points) {
+    pointsMissing = level4Points - user.experience
     lvl = 3;
-  } else if (user.experience > 60) {
+  } else if (user.experience > level2Points) {
+    pointsMissing = level3Points - user.experience
     lvl = 2;
-  } else if (user.experience > 25) {
+  } else if (user.experience > level1Points) {
+    pointsMissing = level2Points - user.experience
     lvl = 1;
   }
+  else {
+    pointsMissing = level1Points - user.experience
+  }
+
+  if (pointsMissing <= 0 ) { 
+    percentMissing = percent100
+  }
+  else if(pointsMissing < 11 ) { 
+    percentMissing = percent75
+  }
+  else if (pointsMissing <= 30 ) { 
+    percentMissing = percent50
+  }
+  else {
+    percentMissing = percent25
+  }
+
+
 
   let userLevel = user.level[lvl];
 
-  // console.log(daysPassed);
-  res.render("profile", { user: user, daysPassed: daysPassed, userLevel: userLevel });
+  res.render("profile", { user: user, daysPassed: daysPassed, userLevel: userLevel, pointsMissing, percentMissing });
 });
 
 // Route Actions GET / POST (action completed, update of user)
@@ -66,11 +99,8 @@ router.get("/actions", async function (req, res, next) {
       
       actions = await Action.find()
       
-      console.log("ALL TASKS COMPLETED", allTasksCompleted)
     }
-    console.log("USER ACTION POPULATED", userActionPopulated)
-    
-    console.log("ACTION POPULATED", actionPopulated)
+
   }
 
 
