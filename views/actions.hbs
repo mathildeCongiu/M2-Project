@@ -29,11 +29,16 @@
         <div class="one-action-description {{#if this.isCompleted}}one-action-description-completed{{/if}}">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
+            {{#if this.allTasksCompleted}} 
                 {{#if this.isCompleted}}
                 <button type="submit" class= "action-bt-done ">I don't do it anymore</button>
                 {{else}}
                 <button type="submit" class="action-bt" >Yes, I do it !</button>
                 {{/if}}
+
+                {{else}}
+                <button type="submit" class="action-bt-disable" disabled>Yes, I do it !</button>
+            {{/if}}
             </form>
         </div>
     </div>

@@ -45,28 +45,31 @@ router.get("/actions", async function (req, res, next) {
   const userActionPopulated = await User.findById(user._id).populate("actions");
   const actions = userActionPopulated.actions
   
-  
+
   for (let j = 0; j< actions.length; j++) {
+    let counter = 0
     let actionID = actions[j]._id
-    await Action.findById(actionID).populate("tasks");
+    let actionPopulated = await Action.findById(actionID).populate("tasks");
+
+    for (let i = 0; i< actionPopulated.tasks.length; i++) {
+      if (actionPopulated.tasks[i].isCompleted) {
+        counter ++;
+      }
+    }
+
+    if (counter === actionPopulated.tasks.length) {
+      const allTasksCompleted = await Action.findByIdAndUpdate(
+        { _id: actionID },
+        { $set: { allTasksCompleted: true } },
+        { new: true }
+      );
+      actionPopulated = allTasksCompleted
+    }
     
-  }
-  
-  console.log(actions)
-
-  let allTasksCompleted = false
-
-  for (let i = 0; i< actionPopulated.tasks.length; i++) {
-    if (actions.tasks[i].isCompleted) {
-      allTasksCompleted = true
-    }
-    else {
-      allTasksCompleted = false
-      break
-    }
+    console.log(actionPopulated)
   }
 
-  console.log(allTasksCompleted)
+
   // console.log(actions);
   res.render("actions", { actions, user });
 });
