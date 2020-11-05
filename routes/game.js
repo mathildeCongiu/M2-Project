@@ -41,9 +41,9 @@ router.get("/profile", function (req, res, next) {
 
 // Route Actions GET / POST (action completed, update of user)
 router.get("/actions", async function (req, res, next) {
-  const user = req.session.currentUser;
+  let user = req.session.currentUser;
   const userActionPopulated = await User.findById(user._id).populate("actions");
-  const actions = userActionPopulated.actions
+  let actions = userActionPopulated.actions
   
 
   for (let j = 0; j< actions.length; j++) {
@@ -63,10 +63,14 @@ router.get("/actions", async function (req, res, next) {
         { $set: { allTasksCompleted: true } },
         { new: true }
       );
-      actionPopulated = allTasksCompleted
+      
+      actions = await Action.find()
+      
+      console.log("ALL TASKS COMPLETED", allTasksCompleted)
     }
+    console.log("USER ACTION POPULATED", userActionPopulated)
     
-    console.log(actionPopulated)
+    console.log("ACTION POPULATED", actionPopulated)
   }
 
 

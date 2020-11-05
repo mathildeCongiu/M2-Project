@@ -361,7 +361,7 @@ nav {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	margin: 0 70px 220px;
+	margin: 0 70px 500px;
 }
 
 .one-action {
@@ -435,7 +435,6 @@ nav {
 
 .one-action input:checked ~ .one-action-title label > img{
 	transform: rotate(0deg);
-	/* transition: height 0.2s ease-in-out 0s; */
 }
 
 .one-action input:checked ~ .one-action-description {
@@ -443,7 +442,7 @@ nav {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	/* transition: height 0.2s ease-in-out 0s; */
+	transition: display 1s ease-in-out 0s;
 }
 
 .chevron-checkbox {
