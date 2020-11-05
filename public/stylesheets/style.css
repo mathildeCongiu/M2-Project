@@ -400,6 +400,9 @@ nav {
 	padding: 15px 0;
 }
 
+.user-exp p:first-child {
+	display: none;
+}
 .exp-bar {
 	width: 70vw;
 	height: 3vh;
@@ -481,21 +484,27 @@ nav {
 		margin-top: 20px;
 	}
 
-	.profile {
+	#profile {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: space-between;
+		border: dashed 2px #585858 ;
+		margin: 0 50px;
 	}
 	
 	.user-data {
 		background: none;
 		justify-content: space-around;
-		width: 40vw;
-		padding: 50px 0;
+		width: 50vw;
+		padding: 30px;
+		border-right: dashed 2px #585858;
 	}
 
 	.user-data > p {
 		display: block;
+		font-size: 1.7vw;
 	}
 
 	.one-data {
@@ -508,73 +517,51 @@ nav {
 	}
 	
 
-
 	.one-data > p {
-		font-size: 2.5vw;
+		font-size: 1.7vw;
 	}
 	
-	.highlight {
-		color: #2ECC71;
-		font-weight: 900;
-	}
-	
+
 	.user-exp {
-		height: 25vw;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
-		padding: 15px 0;
+		height: 20vh;
+		width: 40%;
+		padding: 30px 0;
+		margin : 0;
+		justify-content: center;
+	}
+	.user-exp p:first-child {
+		display: block;
 	}
 	
 	.exp-bar {
-		width: 70vw;
+		width: 80%;
 		height: 3vh;
-		background-color: #2ECC71;
-		border: solid 2px #585858;
 	}
 	
 	.user-exp > p {
-		font-size: 4vw;
+		font-size: 1.7vw;
+		margin: 20px
 	}
 	
 	.saved-dino {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		padding: 0 60px;
-		margin-bottom: 200px;
+		padding: 50px 30px; 
+		width: 100%;
+		border-top: dashed 2px #585858;
+		margin-bottom: 0px;
 	}
 	
 	.saved-dino > h4 {
-		font-size: 3.7vw;
-		color: #8DB6D4;
-		font-weight: 900;
+		font-size: 2vw;
 		margin-bottom: 40px;
 	}
 	
-	.saved-dino-list {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-around;
-	}
-	
-	.one-dino {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-	}
 	
 	.one-dino > img {
-		width: 35vw;
+		width: 15vw;
 	}
 	
 	.one-dino > h5 {
-		color: #8DB6D4;
-		font-size: 3.6vw;
+		font-size: 1.5vw;
 		padding: 15px 0 40px 0;
 	}
 	
