@@ -10,13 +10,13 @@
 
     <form action="/task/{{task._id}}/edit" method="post">
 
-        <h3 class="trapecio">What will be your next step?</h3>
+        <h3>What will be your next step?</h3>
 
         <p>I will...</p>
 
         <textarea name="title" id="new-task" value="{{task.title}}">{{task.title}}</textarea>
 
-        <h3>How hard will it be for you?</h3>
+        <h3 id="trapecio-left">How hard will it be for you?</h3>
 
         <div class="radio-option">
 

@@ -815,6 +815,7 @@ nav {
 	margin-top: 50px;
 	border-radius: 40px;
 	box-shadow: 0 4px 5px #585858;
+	background-color: white;
 }
 
 .complete-form {
@@ -1008,7 +1009,7 @@ nav {
 	font-size: 6vw;
 	font-weight: 900;
 	color: white;
-	padding: 30px 50px;
+	padding: 30px 90px 30px 50px;
 	clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
 
 }
@@ -1145,26 +1146,27 @@ input[type="radio"]:checked + label {
 }
 
 .task-new-edit {
-	width: 40vw;
+	width: 50vw;
 }
 
 .task-new-edit h3 {
-	font-size: 3vw;
-	width: 30vw;
+	font-size: 2vw;
+	width: 80%;
 	padding: 30px 50px;
 }
 
 
 .task-new-edit p {
-	font-size: 4vw;
+	font-size: 3vw;
 	padding: 20px 50px;
 }
 
 .task-new-edit > form > textarea {
 	/* width: 40%; */
-	height: 10vh;
+	height: 15vh;
+	margin-right: 30px;
 	margin-bottom: 40px;
-	font-size: 2vw;
+	font-size: 1.5vw;
 	padding: 30px;
 }
 
