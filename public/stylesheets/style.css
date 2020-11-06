@@ -440,6 +440,7 @@ nav {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	margin-right: 80px;
 }
 
 .one-dino > img {
@@ -467,6 +468,10 @@ nav {
 		height: 600px;
 		justify-content: flex-start;
 	}
+
+	.profile-title {
+		margin-left: 50px;
+	}
 	
 	.profile-title > h3 {
 		font-size: 2vw;
@@ -474,7 +479,7 @@ nav {
 	}
 	
 	.profile-title > img {
-		width: 15vw;
+		width: 12vw;
 	}
 	
 	.profile-title > h2 {
@@ -578,7 +583,10 @@ nav {
 	width:30%;
 	font-size: 10vw;
 	color: #2ECC71;
+}
 
+.actions-header > img {
+	width: 30vw;
 }
 
 
@@ -904,6 +912,10 @@ nav {
 }
 
 @media screen and (min-width: 1000px){
+	.logo-header-beige {
+		margin: -30% 0 0 -30%;
+	}
+
 	.flex-tasks {
 		display: flex;
 		flex-direction: row;
@@ -913,7 +925,6 @@ nav {
 
 
 	.task-header {
-		/* width: 10%; */
 		margin: 0;
 	}
 
@@ -923,7 +934,7 @@ nav {
 	}
 	
 	.task-header > h2 {
-		font-size: 8vw;;
+		font-size: 7vw;;
 		margin-left: 50px;
 		width: 40vw;
 	}
@@ -938,6 +949,7 @@ nav {
 		width: 3.5vw;
 		height: 3.5vw;
 		margin: 40px;
+		border-radius: 20px;
 	}
 	
 	
@@ -957,7 +969,7 @@ nav {
 	}
 	
 	#task-footer {
-		margin: 220px 50px;
+		margin: 50px 50px;
 		width: 40%;
 	}
 	
@@ -1177,7 +1189,7 @@ input[type="radio"]:checked + label {
 
 }
 /*Others */
-#others-page {
+.others-page {
 	padding: 200px;
 	display: flex;
 	flex-direction: column;
@@ -1186,46 +1198,155 @@ input[type="radio"]:checked + label {
 
 }
 
-#others-page > div {
+.others-page > div {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
 }
 
-#others-page > div > li {
+.others-page > div > li {
 	list-style-type: none;
 	padding: 30px 0;
 }
 
-#others-page a {
+.others-page a {
 	font-size: 5vw;
 	font-weight: 900;
 }
 
-#others-page > div  a {
+.others-page > div  a {
 	color: #585858;
 }
 
-#others-page > a {
+.others-page > a {
 	color: red;
 	padding: 30px 0;
 	border-top: solid 2px #585858;
 	width: 100%;
 }
 
-/* To do the circle */
-.orange-circle {
-	width: 1200px;
-	height: 1200px;
-	-moz-border-radius: 50%;     
-	-webkit-border-radius: 50%;     
-	border-radius: 50%;  
-	background-color: #F2C11D;
-	position: relative;
-	top: -400px;
-	margin-bottom: -1200px;
+.logo-bottom-blue {
+	background-color: #8DB6D4;
+	padding: 40px 70px;
+	position: absolute;
+	height: 1300px;
+	width: 1300px;
+	border-radius: 50%;
+	bottom: 0;
 	z-index: -1;
+	margin: 0 0 0 -50%;
+	clip-path: circle(65% at 20% 90%); 
+}
+
+/* FAQs page */
+
+.faq-title {
+	font-size: 8vw;
+	color: #585858;
+}
+
+.one-faq {
+	margin: 15px -60px;
+	padding: 20px;
+}
+
+.one-faq p {
+	color: white;
+	font-size: 4vw;
+	padding: 20px 0 20px 20px;
+	width: 100%;
+
+}
+
+.faq-question {
+	background-color: #2ECC71;
+	border-radius: 20px 20px 0 0;
+	font-weight: 900;
+}
+
+.faq-answer {
+	background-color: #16A78A;
+	border-radius: 0 0 20px 20px;
+}
+
+/* About us page */
+
+.about-us-p {
+	color: #585858;
+	font-size: 4vw;
+	margin-top: 50px;
+	font-weight: 900;
+}
+
+/* Attributions page */
+
+.attributions-page {
+	padding: 70px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.attributions-page > h2 {
+	font-size: 8vw;
+	color: #585858;
+}
+
+.attributions-page ul {
+	margin: 20px 40px;
+}
+
+.attributions-page li {
+	list-style-type: disc;
+	padding: 20px 0;
+}
+
+.attributions-page a {
+	font-size: 4vw;
+}
+
+@media screen and (min-width: 1000px){
+	
+	.others-page a {
+		font-size: 2vw;
+	}
+
+	.logo-header {
+		margin: -30% 0 0 -30%;
+	}
+
+	.logo-bottom-blue {
+		display: none;
+		/* padding: 40px 70px;
+		margin: 0 0 -30% -20%;
+		clip-path: circle(50% at 25% 100%); 
+		border-radius: 200%; */
+	}
+
+	.faq-title {
+		font-size: 6vw;
+	}
+	
+	.one-faq p {
+		font-size: 2vw;
+	}
+
+	.about-us-p {
+		font-size: 2vw;
+		margin-top: 50px;
+	}
+	
+	.attributions-page > h2 {
+		font-size: 6vw;
+		margin-top: 50px;
+	}
+	
+	.attributions-page a {
+		font-size: 1.5vw;
+	}
+
 }
 
 
@@ -1247,6 +1368,18 @@ input[type="radio"]:checked + label {
 	margin-bottom: 50px;
 }
 
+@media screen and (min-width: 1000px){
+	.err404-500  {
+		margin-top: 150px;
+	
+	}
+	
+	.err404-500 p {
+		width: 80%;
+		font-size: 2vw;
+		margin-bottom: 50px;
+	}
+}
 
 /* Modal page */
 
@@ -1297,3 +1430,32 @@ margin-top: 40px;
  padding: 20px 100px;
  font-size: 4vw;
 }
+
+@media screen and (min-width: 1000px){
+	.card {
+		width: 40%;
+		margin: 10vh 0;
+		padding: 40px
+	}
+	
+	.card p {
+	 font-size: 1.5vw;
+	 
+	}
+	
+	.card img {
+		width: 20vw;
+	margin: 20px;
+	}
+	
+	.card  h3 {
+		font-size: 2vw;
+	}
+	
+	.card  a {
+	margin-top: 40px;
+	 padding: 20px 100px;
+	 font-size: 1.5vw;
+	}
+}
+
