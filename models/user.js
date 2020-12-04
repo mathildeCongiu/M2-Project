@@ -33,8 +33,11 @@ const userSchema = new Schema(
     },
 
     experience: { type: Number, default: 0 },
-    actions: [{ type: Schema.Types.ObjectId, ref: "Action" }],
-    // tasks: [ {type: Schema.Types.ObjectId, ref: "Task"}],
+    actionsPending: [{ type: Schema.Types.ObjectId, ref: "Action" }],
+    actionsCompleted: [{ type: Schema.Types.ObjectId, ref: "Action" }],
+    actionsActiveButton: [{ type: Schema.Types.ObjectId, ref: "Action" }],
+    tasksPending: [ {type: Schema.Types.ObjectId, ref: "Task"}],
+    tasksCompleted: [ {type: Schema.Types.ObjectId, ref: "Task"}],
     dinosaved: [{ type: Object }],
   },
   {

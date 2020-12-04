@@ -75,14 +75,22 @@ router.get("/profile", function (req, res, next) {
 // Route Actions GET / POST (action completed, update of user)
 router.get("/actions", async function (req, res, next) {
   let user = req.session.currentUser;
-  const userActionPopulated = await User.findById(user._id).populate("actions");
-  let actions = userActionPopulated.actions
+  const userActionPopulated = await User.findById(user._id).populate("actionsPending").populate("tasksPending");
+  let actions = userActionPopulated.actionsPending
   
 
   for (let j = 0; j< actions.length; j++) {
     let counter = 0
     let actionID = actions[j]._id
     let actionPopulated = await Action.findById(actionID).populate("tasks");
+    let actionRef = actionPopulated.ref
+    console.log(actionPopulated)
+
+    const userPopulatedTasksPending = JSON.parse(JSON.stringify(userActionPopulated.tasksPending))
+
+    const tasksListPending = userPopulatedTasksPending.filter(task => {
+      return task.ref === actionRef
+    })
 
     for (let i = 0; i< actionPopulated.tasks.length; i++) {
       if (actionPopulated.tasks[i].isCompleted) {
@@ -90,7 +98,7 @@ router.get("/actions", async function (req, res, next) {
       }
     }
 
-    if (counter === actionPopulated.tasks.length) {
+    if (tasksListPending.length === 0) {
       const allTasksCompleted = await Action.findByIdAndUpdate(
         { _id: actionID },
         { $set: { allTasksCompleted: true } },
@@ -113,8 +121,22 @@ router.get("/actions", async function (req, res, next) {
 // Route action/:id GET
 router.get("/actions/:id", async (req, res, next) => {
   try {
-    const tasksList = await Action.findById(req.params.id).populate("tasks");
-      res.render("tasks", { tasksList: tasksList });
+    const user = req.session.currentUser
+    const userPopulated = await User.findById(user._id).populate("tasksPending").populate("tasksCompleted") 
+    const action =  await Action.findById(req.params.id)
+    const actionRef = action.ref
+    
+    const userPopulatedTasksPending = JSON.parse(JSON.stringify(userPopulated.tasksPending))
+    const userPopulatedTasksCompleted = JSON.parse(JSON.stringify(userPopulated.tasksCompleted))
+
+    const tasksListPending = userPopulatedTasksPending.filter(task => {
+      return task.ref === actionRef
+    })
+    const tasksListCompleted = userPopulatedTasksCompleted.filter(task => {
+      return task.ref === actionRef
+    })
+
+      res.render("tasks", { tasksListPending: tasksListPending, action, tasksListCompleted });
   } catch (error) {
     console.log(error);
   }
@@ -228,13 +250,14 @@ router.get("/actions/:id/modal", async (req, res, next) => {
 // Route task Post Task completed + update user
 router.post("/task/:id/completed", async (req, res, next) => {
   try {
-    const findTask = await Task.findById(req.params.id);
+    const taskId = req.params.id
+    const findTask = await Task.findById(taskId);
 
-    const taskCompleted = await Task.findByIdAndUpdate(
-      { _id: req.params.id },
-      { $set: { isCompleted: !findTask.isCompleted } },
-      { new: true }
-    );
+    // const taskCompleted = await Task.findByIdAndUpdate(
+    //   { _id: req.params.id },
+    //   { $set: { isCompleted: !findTask.isCompleted } },
+    //   { new: true }
+    // );
     const taskRef = findTask.ref;
     const actionRef = await Action.findOne({ ref: taskRef });
     const actionId = actionRef.id;
@@ -246,11 +269,15 @@ router.post("/task/:id/completed", async (req, res, next) => {
 
     const userUpdated = await User.findByIdAndUpdate(
       { _id: user._id },
-      { $set: { experience: expUpdated } },
+      { $set: { experience: expUpdated },
+      $push: { tasksCompleted: taskId},
+      $pull: { tasksPending: taskId}
+    },
       { new: true }
     );
 
     req.session.currentUser = userUpdated;
+
 
     res.redirect(`/actions/${actionId}`);
   } catch (error) {
@@ -282,7 +309,14 @@ router.post("/:id/new", async (req, res, next) => {
     });
     const newTask = await task.save();
 
-    await Action.update({ _id: actionId }, { $push: { tasks: newTask } });
+    const user = req.session.user
+    const userUpdated = await User.findByIdAndUpdate(
+      { _id: user._id },
+      { $push: { tasksPending: newTask._id } },
+      { new: true }
+    );
+    req.session.currentUser = userUpdated;
+    // await Action.update({ _id: actionId }, { $push: { tasks: newTask } });
 
     res.redirect(`/actions/${actionId}`);
   } catch (error) {
