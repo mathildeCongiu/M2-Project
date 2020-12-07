@@ -75,12 +75,16 @@ router.get("/profile", function (req, res, next) {
 // Route Actions GET / POST (action completed, update of user)
 router.get("/actions", async function (req, res, next) {
   let user = req.session.currentUser;
-  const userActionPopulated = await User.findById(user._id).populate("actionsPending").populate("tasksPending");
+  const userActionPopulated = await User.findById(user._id).populate("actionsPending").populate("tasksPending").populate("actionsActiveButton").populate("actionsCompleted");
   let actions = userActionPopulated.actionsPending
+  let actionsCompleted = userActionPopulated.actionsCompleted
+  let actionsActiveButton = userActionPopulated.actionsActiveButton
+
+  console.log(actions, actionsActiveButton, actionsActiveButton)
   
 
   for (let j = 0; j< actions.length; j++) {
-    let counter = 0
+    // let counter = 0
     let actionID = actions[j]._id
     let actionPopulated = await Action.findById(actionID).populate("tasks");
     let actionRef = actionPopulated.ref
@@ -92,22 +96,39 @@ router.get("/actions", async function (req, res, next) {
       return task.ref === actionRef
     })
 
-    for (let i = 0; i< actionPopulated.tasks.length; i++) {
-      if (actionPopulated.tasks[i].isCompleted) {
-        counter ++;
-      }
-    }
-
-    if (tasksListPending.length === 0) {
-      const allTasksCompleted = await Action.findByIdAndUpdate(
-        { _id: actionID },
-        { $set: { allTasksCompleted: true } },
+    if (tasksListPending.length === 0 ) {
+      const userUpdated = await User.findByIdAndUpdate(
+        { _id: user._id },
+        { 
+        $push: { actionsActiveButton: actionID},
+        $pull: { actionsPending: actionID}
+      },
         { new: true }
       );
-      
-      actions = await Action.find()
-      
+      req.session.currentUser = userUpdated
+      // Pasar el nuevo usuario al handlebars para que rendireze las tres arrays: actionsActiveButton, actionsPending, actions
+      // En el handlebars, atribuir la clase correcta a cada array
+      // En el post (no aquí entonces), hay que hacer el ultimo pull/push al array de actionsCompleted. Y sería todo!
     }
+
+
+
+    // for (let i = 0; i< actionPopulated.tasks.length; i++) {
+    //   if (actionPopulated.tasks[i].isCompleted) {
+    //     counter ++;
+    //   }
+    // }
+
+    // if (tasksListPending.length === 0) {
+    //   const allTasksCompleted = await Action.findByIdAndUpdate(
+    //     { _id: actionID },
+    //     { $set: { allTasksCompleted: true } },
+    //     { new: true }
+    //   );
+      
+    //   actions = await Action.find()
+      
+    // }
 
   }
 
