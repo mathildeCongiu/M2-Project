@@ -77,10 +77,8 @@ router.get("/actions", async function (req, res, next) {
   let user = req.session.currentUser;
   const userActionPopulated = await User.findById(user._id).populate("actionsPending").populate("tasksPending").populate("actionsActiveButton").populate("actionsCompleted");
   let actions = userActionPopulated.actionsPending
-  let actionsCompleted = userActionPopulated.actionsCompleted
-  let actionsActiveButton = userActionPopulated.actionsActiveButton
-
-  console.log(actions, actionsActiveButton, actionsActiveButton)
+  // let actionsCompleted = userActionPopulated.actionsCompleted
+  // let actionsActiveButton = userActionPopulated.actionsActiveButton
   
 
   for (let j = 0; j< actions.length; j++) {
@@ -88,7 +86,6 @@ router.get("/actions", async function (req, res, next) {
     let actionID = actions[j]._id
     let actionPopulated = await Action.findById(actionID).populate("tasks");
     let actionRef = actionPopulated.ref
-    console.log(actionPopulated)
 
     const userPopulatedTasksPending = JSON.parse(JSON.stringify(userActionPopulated.tasksPending))
 
@@ -106,35 +103,13 @@ router.get("/actions", async function (req, res, next) {
         { new: true }
       );
       req.session.currentUser = userUpdated
-      // Pasar el nuevo usuario al handlebars para que rendireze las tres arrays: actionsActiveButton, actionsPending, actions
-      // En el handlebars, atribuir la clase correcta a cada array
-      // En el post (no aquí entonces), hay que hacer el ultimo pull/push al array de actionsCompleted. Y sería todo!
     }
-
-
-
-    // for (let i = 0; i< actionPopulated.tasks.length; i++) {
-    //   if (actionPopulated.tasks[i].isCompleted) {
-    //     counter ++;
-    //   }
-    // }
-
-    // if (tasksListPending.length === 0) {
-    //   const allTasksCompleted = await Action.findByIdAndUpdate(
-    //     { _id: actionID },
-    //     { $set: { allTasksCompleted: true } },
-    //     { new: true }
-    //   );
-      
-    //   actions = await Action.find()
-      
-    // }
 
   }
 
+  const newUser = await User.findById(user._id).populate("actionsPending").populate("tasksPending").populate("actionsActiveButton").populate("actionsCompleted");
 
-  // console.log(actions);
-  res.render("actions", { actions, user });
+  res.render("actions", { user: newUser });
 });
 
 
@@ -218,41 +193,6 @@ router.post("/actions/:id", async (req, res, next) => {
       req.session.currentUser = userUpdated;
       res.redirect(`/actions/${actionID}/modal`);
     }
-
-    // const actionPopulated = action.populate("tasks")
-    // const tasks =  actionPopulated.tasks
-    // const userPopulated = await User.findById(user._id).populate("actions");
-    // console.log(userPopulated)
-    // const userActionCompletedStatus = userPopulated.actions[action.ref-1].isCompleted;
-    // console.log(userActionCompletedStatus)
-
-    // const userUpdated = await User.updateOne(
-    //   { _id: user._id },
-    //   { $set: { userActionCompletedStatus: true} },
-    //   {new : true}
-    //   )
-
-    //   console.log(userUpdated)
-    // let allCompleted = false
-
-    // for (let i = 0; i < tasks.length; i ++) {
-    //   if (tasks[i].isCompleted) {
-    //   }
-    //   else {
-    //     console.log("You didn't complete all the tasks")
-    //     allCompleted = false
-    //     return
-    //   }
-
-    //     allCompleted = true
-    // }
-    // action.isCompleted = true
-
-    // console.log(allCompleted)
-    // await action.updateOne(
-    //   { _id: actionID },
-    //   { $set: { isCompleted: true }}
-    //   )
 
    
   } catch (error) {
