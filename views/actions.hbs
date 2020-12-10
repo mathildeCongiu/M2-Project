@@ -9,16 +9,13 @@
     <div class="one-action">
         <input type="checkbox" class="chevron-checkbox" id="{{this.title}}-chevron-checkbox" name="chevron-checkbox">
 
-        <div class="one-action-title {{#if this.isCompleted}}one-action-title-completed{{/if}}">
+        <div class="one-action-title">
             <div class="one-action-title-header">
                 <img src="{{icon}}" alt="Icon">
                 <div>
                     <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
-                    {{#if this.isCompleted}}
-                    <p class="tag">Completed</p>
-                    {{else}}
+                    
                     <p class="tag">Pending</p>
-                    {{/if}}
                 </div>
             </div>
             <label for="{{this.title}}-chevron-checkbox"><img class="chevron-img" src="/images/chevron.png"
@@ -27,7 +24,7 @@
         </div>
 
 
-        <div class="one-action-description {{#if this.isCompleted}}one-action-description-completed{{/if}}">
+        <div class="one-action-description">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
 
@@ -42,16 +39,13 @@
     <div class="one-action">
         <input type="checkbox" class="chevron-checkbox" id="{{this.title}}-chevron-checkbox" name="chevron-checkbox">
 
-        <div class="one-action-title {{#if this.isCompleted}}one-action-title-completed{{/if}}">
+        <div class="one-action-title">
             <div class="one-action-title-header">
                 <img src="{{icon}}" alt="Icon">
                 <div>
                     <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
-                    {{#if this.isCompleted}}
-                    <p class="tag">Completed</p>
-                    {{else}}
+                    
                     <p class="tag">Pending</p>
-                    {{/if}}
                 </div>
             </div>
             <label for="{{this.title}}-chevron-checkbox"><img class="chevron-img" src="/images/chevron.png"
@@ -60,7 +54,7 @@
         </div>
 
 
-        <div class="one-action-description {{#if this.isCompleted}}one-action-description-completed{{/if}}">
+        <div class="one-action-description">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
 
@@ -74,16 +68,13 @@
     <div class="one-action">
         <input type="checkbox" class="chevron-checkbox" id="{{this.title}}-chevron-checkbox" name="chevron-checkbox">
 
-        <div class="one-action-title {{#if this.isCompleted}}one-action-title-completed{{/if}}">
+        <div class="one-action-title one-action-title-completed">
             <div class="one-action-title-header">
                 <img src="{{icon}}" alt="Icon">
                 <div>
                     <h3><a href="/actions/{{_id}}">{{title}}</a></h3>
-                    {{#if this.isCompleted}}
                     <p class="tag">Completed</p>
-                    {{else}}
-                    <p class="tag">Pending</p>
-                    {{/if}}
+                    
                 </div>
             </div>
             <label for="{{this.title}}-chevron-checkbox"><img class="chevron-img" src="/images/chevron.png"
@@ -92,7 +83,7 @@
         </div>
 
 
-        <div class="one-action-description {{#if this.isCompleted}}one-action-description-completed{{/if}}">
+        <div class="one-action-description one-action-description-completed">
             <p>{{description}}</p>
             <form action="/actions/{{_id}}" method="post">
 

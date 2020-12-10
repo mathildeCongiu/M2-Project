@@ -23,145 +23,154 @@ router.get("/profile", function (req, res, next) {
   // crear variable para lvl e iterarlo por la array para cambiar name and img
   let lvl = 0;
 
-  const level1Points = 25
-  const level2Points = 60
-  const level3Points = 100
-  const level4Points = 150
-  let pointsMissing = 0
+  const level1Points = 25;
+  const level2Points = 60;
+  const level3Points = 100;
+  const level4Points = 150;
+  let pointsMissing = 0;
 
-  let percentMissing = 0
-  const percent25 = "/images/25.png"
-  const percent50 = "/images/50.png"
-  const percent75 = "/images/75.png"
-  const percent100 = "/images/100.png"
+  let percentMissing = 0;
+  const percent25 = "/images/25.png";
+  const percent50 = "/images/50.png";
+  const percent75 = "/images/75.png";
+  const percent100 = "/images/100.png";
 
   if (user.experience > level4Points) {
     lvl = 4;
-    percentMissing = percent100
+    percentMissing = percent100;
   } else if (user.experience > level3Points) {
-    pointsMissing = level4Points - user.experience
+    pointsMissing = level4Points - user.experience;
     lvl = 3;
   } else if (user.experience > level2Points) {
-    pointsMissing = level3Points - user.experience
+    pointsMissing = level3Points - user.experience;
     lvl = 2;
   } else if (user.experience > level1Points) {
-    pointsMissing = level2Points - user.experience
+    pointsMissing = level2Points - user.experience;
     lvl = 1;
-  }
-  else {
-    pointsMissing = level1Points - user.experience
-  }
-
-  if (pointsMissing <= 0 ) { 
-    percentMissing = percent100
-  }
-  else if(pointsMissing < 11 ) { 
-    percentMissing = percent75
-  }
-  else if (pointsMissing <= 30 ) { 
-    percentMissing = percent50
-  }
-  else {
-    percentMissing = percent25
+  } else {
+    pointsMissing = level1Points - user.experience;
   }
 
-
+  if (pointsMissing <= 0) {
+    percentMissing = percent100;
+  } else if (pointsMissing < 11) {
+    percentMissing = percent75;
+  } else if (pointsMissing <= 30) {
+    percentMissing = percent50;
+  } else {
+    percentMissing = percent25;
+  }
 
   let userLevel = user.level[lvl];
 
-  res.render("profile", { user: user, daysPassed: daysPassed, userLevel: userLevel, pointsMissing, percentMissing });
+  res.render("profile", {
+    user: user,
+    daysPassed: daysPassed,
+    userLevel: userLevel,
+    pointsMissing,
+    percentMissing,
+  });
 });
 
 // Route Actions GET / POST (action completed, update of user)
 router.get("/actions", async function (req, res, next) {
   let user = req.session.currentUser;
-  const userActionPopulated = await User.findById(user._id).populate("actionsPending").populate("tasksPending").populate("actionsActiveButton").populate("actionsCompleted");
-  let actions = userActionPopulated.actionsPending
+  const userActionPopulated = await User.findById(user._id)
+    .populate("actionsPending")
+    .populate("tasksPending")
+    .populate("actionsActiveButton")
+    .populate("actionsCompleted");
+  let actions = userActionPopulated.actionsPending;
   // let actionsCompleted = userActionPopulated.actionsCompleted
   // let actionsActiveButton = userActionPopulated.actionsActiveButton
-  
 
-  for (let j = 0; j< actions.length; j++) {
+  for (let j = 0; j < actions.length; j++) {
     // let counter = 0
-    let actionID = actions[j]._id
+    let actionID = actions[j]._id;
     let actionPopulated = await Action.findById(actionID).populate("tasks");
-    let actionRef = actionPopulated.ref
+    let actionRef = actionPopulated.ref;
 
-    const userPopulatedTasksPending = JSON.parse(JSON.stringify(userActionPopulated.tasksPending))
+    const userPopulatedTasksPending = JSON.parse(
+      JSON.stringify(userActionPopulated.tasksPending)
+    );
 
-    const tasksListPending = userPopulatedTasksPending.filter(task => {
-      return task.ref === actionRef
-    })
+    const tasksListPending = userPopulatedTasksPending.filter((task) => {
+      return task.ref === actionRef;
+    });
 
-    if (tasksListPending.length === 0 ) {
+    if (tasksListPending.length === 0) {
       const userUpdated = await User.findByIdAndUpdate(
         { _id: user._id },
-        { 
-        $push: { actionsActiveButton: actionID},
-        $pull: { actionsPending: actionID}
-      },
+        {
+          $push: { actionsActiveButton: actionID },
+          $pull: { actionsPending: actionID },
+        },
         { new: true }
       );
-      req.session.currentUser = userUpdated
+      req.session.currentUser = userUpdated;
     }
-
   }
 
-  const newUser = await User.findById(user._id).populate("actionsPending").populate("tasksPending").populate("actionsActiveButton").populate("actionsCompleted");
+  const newUser = await User.findById(user._id)
+    .populate("actionsPending")
+    .populate("tasksPending")
+    .populate("actionsActiveButton")
+    .populate("actionsCompleted");
 
   res.render("actions", { user: newUser });
 });
 
-
-
 // Route action/:id GET
 router.get("/actions/:id", async (req, res, next) => {
   try {
-    const user = req.session.currentUser
-    const userPopulated = await User.findById(user._id).populate("tasksPending").populate("tasksCompleted") 
-    const action =  await Action.findById(req.params.id)
-    const actionRef = action.ref
-    
-    const userPopulatedTasksPending = JSON.parse(JSON.stringify(userPopulated.tasksPending))
-    const userPopulatedTasksCompleted = JSON.parse(JSON.stringify(userPopulated.tasksCompleted))
+    const user = req.session.currentUser;
+    const userPopulated = await User.findById(user._id)
+      .populate("tasksPending")
+      .populate("tasksCompleted");
+    const action = await Action.findById(req.params.id);
+    const actionRef = action.ref;
 
-    const tasksListPending = userPopulatedTasksPending.filter(task => {
-      return task.ref === actionRef
-    })
-    const tasksListCompleted = userPopulatedTasksCompleted.filter(task => {
-      return task.ref === actionRef
-    })
+    const userPopulatedTasksPending = JSON.parse(
+      JSON.stringify(userPopulated.tasksPending)
+    );
+    const userPopulatedTasksCompleted = JSON.parse(
+      JSON.stringify(userPopulated.tasksCompleted)
+    );
 
-      res.render("tasks", { tasksListPending: tasksListPending, action, tasksListCompleted });
+    const tasksListPending = userPopulatedTasksPending.filter((task) => {
+      return task.ref === actionRef;
+    });
+    const tasksListCompleted = userPopulatedTasksCompleted.filter((task) => {
+      return task.ref === actionRef;
+    });
+
+    res.render("tasks", {
+      tasksListPending: tasksListPending,
+      action,
+      tasksListCompleted,
+    });
   } catch (error) {
     console.log(error);
   }
 });
-
 
 // Route action completed
 
 router.post("/actions/:id", async (req, res, next) => {
   try {
     const user = req.session.currentUser;
-    // console.log(user);
     const actionID = req.params.id;
-    // console.log(actionID);
     let action = await Action.findById(req.params.id);
-    
-    const actionCompleted = await Action.findByIdAndUpdate(
-      { _id: actionID },
-      { $set: { isCompleted: !action.isCompleted } },
-      { new: true }
-    );
-    action = actionCompleted
+
+    // const actionCompleted = await Action.findByIdAndUpdate(
+    //   { _id: actionID },
+    //   { $set: { isCompleted: !action.isCompleted } },
+    //   { new: true }
+    // );
+    // action = actionCompleted
 
     let exists = false;
     for (let i = 0; i < user.dinosaved.length; i++) {
-      // console.log(i)
-      console.log(user.dinosaved[i]);
-      // console.log(action.dino)
-
       if (user.dinosaved[i].name == action.dino.name) {
         exists = true;
       }
@@ -178,40 +187,37 @@ router.post("/actions/:id", async (req, res, next) => {
         { new: true }
       );
       req.session.currentUser = userUpdated;
-      res.redirect(`/actions`)
+      res.redirect(`/actions`);
     } else {
       const userExpUpdated = await User.findByIdAndUpdate(
         { _id: user._id },
-        { $set: { experience: expUpdated } },
+        { $set: { experience: expUpdated }, $push: { dinosaved: action.dino }, $push: { actionsCompleted: actionID }, $pull: { actionsActiveButton: actionID } },
         { new: true }
       );
-      const userUpdated = await User.findByIdAndUpdate(
-        { _id: user._id },
-        { $push: { dinosaved: action.dino } },
-        { new: true }
-      );
-      req.session.currentUser = userUpdated;
+      // const userUpdated = await User.findByIdAndUpdate(
+      //   { _id: user._id },
+      //   { $push: { dinosaved: action.dino } },
+      //   { new: true }
+      // );
+      req.session.currentUser = userExpUpdated;
       res.redirect(`/actions/${actionID}/modal`);
     }
-
-   
   } catch (error) {
     console.log(error);
   }
 });
 
-
 router.get("/actions/:id/modal", async (req, res, next) => {
   const actionID = req.params.id;
   const action = await Action.findById(actionID);
 
-  res.render("modal", {action, layout : false});
+  res.render("modal", { action, layout: false });
 });
 
 // Route task Post Task completed + update user
 router.post("/task/:id/completed", async (req, res, next) => {
   try {
-    const taskId = req.params.id
+    const taskId = req.params.id;
     const findTask = await Task.findById(taskId);
 
     // const taskCompleted = await Task.findByIdAndUpdate(
@@ -230,15 +236,15 @@ router.post("/task/:id/completed", async (req, res, next) => {
 
     const userUpdated = await User.findByIdAndUpdate(
       { _id: user._id },
-      { $set: { experience: expUpdated },
-      $push: { tasksCompleted: taskId},
-      $pull: { tasksPending: taskId}
-    },
+      {
+        $set: { experience: expUpdated },
+        $push: { tasksCompleted: taskId },
+        $pull: { tasksPending: taskId },
+      },
       { new: true }
     );
 
     req.session.currentUser = userUpdated;
-
 
     res.redirect(`/actions/${actionId}`);
   } catch (error) {
@@ -270,7 +276,7 @@ router.post("/:id/new", async (req, res, next) => {
     });
     const newTask = await task.save();
 
-    const user = req.session.user
+    const user = req.session.user;
     const userUpdated = await User.findByIdAndUpdate(
       { _id: user._id },
       { $push: { tasksPending: newTask._id } },
