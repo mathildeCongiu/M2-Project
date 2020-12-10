@@ -9,18 +9,14 @@ const User = require("../models/user");
 
 router.get("/profile", function (req, res, next) {
   const user = req.session.currentUser;
-  // console.log(user);
 
   let today = new Date();
-  // console.log(today);
-  // console.log(user._id)
   let userCreation = new Date(user.created_at);
-  // console.log(userCreation.getTime(), "here");
   let daysPassed = Math.floor(
     (today.getTime() - userCreation.getTime()) / 86400000
   );
 
-  // crear variable para lvl e iterarlo por la array para cambiar name and img
+  // Mejorar niveles
   let lvl = 0;
 
   const level1Points = 25;
@@ -30,6 +26,7 @@ router.get("/profile", function (req, res, next) {
   let pointsMissing = 0;
 
   let percentMissing = 0;
+  const percent0 = "/images/0.png";
   const percent25 = "/images/25.png";
   const percent50 = "/images/50.png";
   const percent75 = "/images/75.png";
@@ -51,7 +48,9 @@ router.get("/profile", function (req, res, next) {
     pointsMissing = level1Points - user.experience;
   }
 
-  if (pointsMissing <= 0) {
+  if(user.experience === 0) {
+    percentMissing = percent0;
+  } else if (pointsMissing <= 0) {
     percentMissing = percent100;
   } else if (pointsMissing < 11) {
     percentMissing = percent75;
@@ -81,11 +80,8 @@ router.get("/actions", async function (req, res, next) {
     .populate("actionsActiveButton")
     .populate("actionsCompleted");
   let actions = userActionPopulated.actionsPending;
-  // let actionsCompleted = userActionPopulated.actionsCompleted
-  // let actionsActiveButton = userActionPopulated.actionsActiveButton
 
   for (let j = 0; j < actions.length; j++) {
-    // let counter = 0
     let actionID = actions[j]._id;
     let actionPopulated = await Action.findById(actionID).populate("tasks");
     let actionRef = actionPopulated.ref;
@@ -194,7 +190,7 @@ router.post("/actions/:id", async (req, res, next) => {
         },
         { new: true }
       );
-      
+
       req.session.currentUser = userExpUpdated;
       res.redirect(`/actions/${actionID}/modal`);
     }
@@ -215,12 +211,6 @@ router.post("/task/:id/completed", async (req, res, next) => {
   try {
     const taskId = req.params.id;
     const findTask = await Task.findById(taskId);
-
-    // const taskCompleted = await Task.findByIdAndUpdate(
-    //   { _id: req.params.id },
-    //   { $set: { isCompleted: !findTask.isCompleted } },
-    //   { new: true }
-    // );
     const taskRef = findTask.ref;
     const actionRef = await Action.findOne({ ref: taskRef });
     const actionId = actionRef.id;
@@ -259,11 +249,8 @@ router.post("/:id/new", async (req, res, next) => {
   try {
     const actionId = req.params.id;
     const action = await Action.findById(actionId);
-    console.log(actionId);
     const refAction = action.ref;
-    console.log(refAction);
     const { title, experience, isPublic } = req.body;
-    // console.log(title, experience, isPublic);
     const task = await new Task({
       title,
       experience,
@@ -279,7 +266,6 @@ router.post("/:id/new", async (req, res, next) => {
       { new: true }
     );
     req.session.currentUser = userUpdated;
-    // await Action.update({ _id: actionId }, { $push: { tasks: newTask } });
 
     res.redirect(`/actions/${actionId}`);
   } catch (error) {
@@ -301,7 +287,6 @@ router.post("/task/:id/edit", async (req, res, next) => {
     const taskId = req.params.id;
     const task = await Task.findById(taskId);
     const taskRef = task.ref;
-    // console.log(refAction);
     const { title, experience, isPublic } = req.body;
 
     await Task.update(
@@ -325,7 +310,6 @@ router.post("/task/:id/delete", async (req, res, next) => {
     const taskRef = task.ref;
     const actionRef = await Action.findOne({ ref: taskRef });
     const actionId = actionRef.id;
-    // res.redirect("/actions");
     res.redirect(`/actions/${actionId}`);
   } catch (error) {
     console.log(error);
