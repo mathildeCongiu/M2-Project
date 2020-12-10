@@ -162,13 +162,6 @@ router.post("/actions/:id", async (req, res, next) => {
     const actionID = req.params.id;
     let action = await Action.findById(req.params.id);
 
-    // const actionCompleted = await Action.findByIdAndUpdate(
-    //   { _id: actionID },
-    //   { $set: { isCompleted: !action.isCompleted } },
-    //   { new: true }
-    // );
-    // action = actionCompleted
-
     let exists = false;
     for (let i = 0; i < user.dinosaved.length; i++) {
       if (user.dinosaved[i].name == action.dino.name) {
@@ -183,7 +176,10 @@ router.post("/actions/:id", async (req, res, next) => {
     if (exists) {
       const userUpdated = await User.findByIdAndUpdate(
         { _id: user._id },
-        { $pull: { dinosaved: action.dino } },
+        {
+          $pull: { dinosaved: action.dino, actionsCompleted: actionID },
+          $push: { actionsActiveButton: actionID },
+        },
         { new: true }
       );
       req.session.currentUser = userUpdated;
@@ -191,14 +187,14 @@ router.post("/actions/:id", async (req, res, next) => {
     } else {
       const userExpUpdated = await User.findByIdAndUpdate(
         { _id: user._id },
-        { $set: { experience: expUpdated }, $push: { dinosaved: action.dino }, $push: { actionsCompleted: actionID }, $pull: { actionsActiveButton: actionID } },
+        {
+          $set: { experience: expUpdated },
+          $push: { dinosaved: action.dino, actionsCompleted: actionID },
+          $pull: { actionsActiveButton: actionID },
+        },
         { new: true }
       );
-      // const userUpdated = await User.findByIdAndUpdate(
-      //   { _id: user._id },
-      //   { $push: { dinosaved: action.dino } },
-      //   { new: true }
-      // );
+      
       req.session.currentUser = userExpUpdated;
       res.redirect(`/actions/${actionID}/modal`);
     }
