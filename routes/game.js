@@ -306,7 +306,15 @@ router.post("/task/:id/edit", async (req, res, next) => {
 
 router.post("/task/:id/delete", async (req, res, next) => {
   try {
-    let task = await Task.findByIdAndRemove({ _id: req.params.id });
+    const taskId = req.params.id;
+    const user = req.session.currentUser;
+    const userUpdated = await User.findByIdAndUpdate(
+      { _id: user._id },
+      { $pull: { tasksPending: taskId, tasksCompleted: taskId } },
+      { new: true }
+    );
+
+    let task = await Task.findById({ _id: req.params.id });
     const taskRef = task.ref;
     const actionRef = await Action.findOne({ ref: taskRef });
     const actionId = actionRef.id;
