@@ -214,23 +214,43 @@ router.post("/task/:id/completed", async (req, res, next) => {
     const taskRef = findTask.ref;
     const actionRef = await Action.findOne({ ref: taskRef });
     const actionId = actionRef.id;
+    const user = req.session.currentUser;
+
+    let exists = false;
+    for (let i = 0; i < user.tasksCompleted.length; i++) {
+      let userTask = await User.findById(user._id).populate("tasksCompleted");
+      if (userTask.tasksCompleted[i].title == findTask.title) {
+        exists = true;
+      }
+    }
 
     const taskExp = findTask.experience;
-    const user = req.session.currentUser;
     const userExp = user.experience;
     const expUpdated = taskExp + userExp;
 
-    const userUpdated = await User.findByIdAndUpdate(
-      { _id: user._id },
-      {
-        $set: { experience: expUpdated },
-        $push: { tasksCompleted: taskId },
-        $pull: { tasksPending: taskId },
-      },
-      { new: true }
-    );
+    if (exists) {
+      const userUpdated = await User.findByIdAndUpdate(
+        { _id: user._id },
+        {
+          $pull: { tasksCompleted: taskId },
+          $push: { tasksPending: taskId },
+        },
+        { new: true }
+      );
+      req.session.currentUser = userUpdated;
+    } else {
+      const userUpdated = await User.findByIdAndUpdate(
+        { _id: user._id },
+        {
+          $set: { experience: expUpdated },
+          $push: { tasksCompleted: taskId },
+          $pull: { tasksPending: taskId },
+        },
+        { new: true }
+      );
+      req.session.currentUser = userUpdated;
+    }
 
-    req.session.currentUser = userUpdated;
 
     res.redirect(`/actions/${actionId}`);
   } catch (error) {
