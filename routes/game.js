@@ -279,7 +279,7 @@ router.post("/:id/new", async (req, res, next) => {
     });
     const newTask = await task.save();
 
-    const user = req.session.user;
+    const user = req.session.currentUser;
     const userUpdated = await User.findByIdAndUpdate(
       { _id: user._id },
       { $push: { tasksPending: newTask._id } },
