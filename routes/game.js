@@ -271,15 +271,17 @@ router.post("/:id/new", async (req, res, next) => {
     const action = await Action.findById(actionId);
     const refAction = action.ref;
     const { title, experience, isPublic } = req.body;
+    const user = req.session.currentUser;
+    
     const task = await new Task({
       title,
       experience,
       isPublic,
       ref: refAction,
+      owner: user._id,
     });
     const newTask = await task.save();
 
-    const user = req.session.currentUser;
     const userUpdated = await User.findByIdAndUpdate(
       { _id: user._id },
       { $push: { tasksPending: newTask._id } },
@@ -347,5 +349,13 @@ router.post("/task/:id/delete", async (req, res, next) => {
 router.get("/modal", (req, res, next) => {
   res.render("modal");
 });
+
+router.get("/:id/hint", (req, res, next) => {
+  res.render("modal-hint")
+})
+
+router.post("/:id/hint", (req, res, next) => {
+
+})
 
 module.exports = router;
