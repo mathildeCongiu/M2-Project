@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  {{!-- <title>{{action.title}}</title> --}}
+  <title>{{action.title}}</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link href="//db.onlinewebfonts.com/c/9f94dc20bb2a09c15241d3a880b7ad01?family=Menlo" rel="stylesheet"
     type="text/css" />
@@ -12,13 +12,13 @@
   <main class="card">
 
     {{#if randomTask}}
-    <h3>Do you want to add the next task?</h3>
-    <p>{{randomTask.title}}</p>
-    <div>
+    <p>Do you want to add the next task?</p>
+    <p id="hint-p">{{randomTask.title}}</p>
+    <div class="hint-accept-reject-container">
       <form action="/{{randomTask._id}}/accept/hint" method="post">
-        <button type="submit">Accept</button>
+        <button class="modal-button" type="submit">Accept</button>
       </form>
-      <a href="/actions/{{action._id}}">Reject</a>
+      <a href="/actions/{{action._id}}" class="reject-button">Reject</a>
     </div>
 
     {{else}}
