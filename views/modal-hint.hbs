@@ -2,23 +2,32 @@
 <html>
 
 <head>
-  <title>{{title}}</title>
+  {{!-- <title>{{action.title}}</title> --}}
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link href="//db.onlinewebfonts.com/c/9f94dc20bb2a09c15241d3a880b7ad01?family=Menlo" rel="stylesheet"
     type="text/css" />
 </head>
 
-<body id = "modal-page">
-<main class = "card">
+<body id="modal-page">
+  <main class="card">
 
+    {{#if randomTask}}
     <h3>Do you want to add the next task?</h3>
-    <p>{{title}}</p>
+    <p>{{randomTask.title}}</p>
     <div>
-      <a href="/{{actions._id}}/hint">Accept</a>
-      <a href="/actions/{{actions._id}}">Reject</a>
+      <form action="/{{randomTask._id}}/accept/hint" method="post">
+        <button type="submit">Accept</button>
+      </form>
+      <a href="/actions/{{action._id}}">Reject</a>
     </div>
 
-</main>
-    
+    {{else}}
+    <p>Sorry! There are no shared tasks in this action!</p>
+    <a href="/actions/{{action._id}}">Ok!</a>
+    {{/if}}
+
+  </main>
+
 </body>
+
 </html>
