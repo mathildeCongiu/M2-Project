@@ -1,8 +1,8 @@
 # 
 
-![readme](/Users/mathildecongiu/Documents/code/ironhack/Modulo02/Project 02/M2-Project/public/images/readme.png)
+![readme](public/images/readme.png)
 
-# ROAD TO GREEN
+# SAVE YOUR DINO
 
 ## DESCRIPTION
 
