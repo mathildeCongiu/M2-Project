@@ -42,7 +42,7 @@ router.post("/signup", async (req, res, next) => {
       return;
     }
     var actionsArr = await Action.find();
-    var tasksArr = await Task.find();
+    var tasksArr = await Task.find({owner: "5fd33239e1260618f701ecf4"});
 
     await User.create({
       email,

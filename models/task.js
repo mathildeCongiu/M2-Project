@@ -8,7 +8,8 @@ const taskSchema = new Schema(
     experience: { type: Number, required: true },
     isPublic: { type: Boolean, required: true},
     // actions:  {type: Schema.Types.ObjectId, ref: "Action"},
-    ref : Number
+    ref : Number,
+    owner: {type: Schema.Types.ObjectId, ref: "User", default: "5fd33239e1260618f701ecf4"},
   }
 );
 

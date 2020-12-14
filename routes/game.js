@@ -271,15 +271,17 @@ router.post("/:id/new", async (req, res, next) => {
     const action = await Action.findById(actionId);
     const refAction = action.ref;
     const { title, experience, isPublic } = req.body;
+    const user = req.session.currentUser;
+    
     const task = await new Task({
       title,
       experience,
       isPublic,
       ref: refAction,
+      owner: user._id,
     });
     const newTask = await task.save();
 
-    const user = req.session.currentUser;
     const userUpdated = await User.findByIdAndUpdate(
       { _id: user._id },
       { $push: { tasksPending: newTask._id } },
@@ -347,5 +349,37 @@ router.post("/task/:id/delete", async (req, res, next) => {
 router.get("/modal", (req, res, next) => {
   res.render("modal");
 });
+
+router.get("/:id/hint", async (req, res, next) => {
+  const actionsId = req.params.id
+  const action = await Action.findById(actionsId)
+  const tasks = await Task.find({ref: action.ref, isPublic: true})
+  const user = req.session.currentUser
+  const filterTask = tasks.filter( elem => {
+    return !user.tasksPending.includes(elem.id) && !user.tasksCompleted.includes(elem.id)
+  })
+
+  const randomTask = filterTask[Math.floor(Math.random() * filterTask.length)]
+
+  res.render("modal-hint", {randomTask, action})
+})
+
+router.post("/:id/accept/hint", async (req, res, next) => {
+  const taskId = req.params.id
+  const user = req.session.currentUser
+  const userUpdated = await User.findByIdAndUpdate(
+    { _id: user._id },
+    { $push: { tasksPending: taskId } },
+    { new: true }
+  );
+
+  req.session.currentUser = userUpdated
+
+  const task = await Task.findById(taskId)
+  const action = await Action.findOne({ ref: task.ref })
+
+
+  res.redirect(`/actions/${action._id}`)
+})
 
 module.exports = router;
